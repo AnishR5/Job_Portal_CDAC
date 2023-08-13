@@ -1,0 +1,39 @@
+(Job Seeker)
+
+	employeeID
+	employeeFullName
+	employeeUserName
+	employeePassword
+	employeeEmail
+	employeeAge
+	employeeAddress
+	employeePhoneNo
+	employeeGender
+	employeeEducation
+	employeeSkill_1
+	employeeSkill_2
+	employeeSkill_3
+	employeeExperience
+	employeeResume
+	
+	
+Job Provider(Company)
+
+	jpId
+	jpName
+	jpUserName
+	jpPassword
+	jpEmail
+	jpAddress
+	jpWebsite
+	jpPhoneNo
+	
+Admin
+	adminUserName
+	adminPassword
+	
+
+	
+	
+	
+	
