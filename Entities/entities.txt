@@ -31,6 +31,35 @@ Job Provider(Company)
 Admin
 	adminUserName
 	adminPassword
+
+Job
+	job_id
+	employer_id
+	job_category_id
+	location_id
+	job_title
+	job_exp_req
+	job_role
+	skills_req
+	salary
+	desc
+	vacancies
+	last_appln_date
+	
+job_category 
+	jc_id
+	jc_name
+	
+application process
+	appln_id
+	job_id  
+	employee_id
+	status 
+	
+location
+	location_id
+	location_name
+	
 	
 
 	
