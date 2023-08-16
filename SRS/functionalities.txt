@@ -12,7 +12,7 @@ Job Seeker Module
 	registration
 	login
 	edit user profile
-	Search jobs by location,categories, company,experience and key"ords!
+	Search jobs by location,categories, company,experience and keywords!
 	Apply for a job "ith the click of a button
 	optional - save jobs
 	reset password by email
