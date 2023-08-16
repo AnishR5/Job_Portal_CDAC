@@ -1,0 +1,32 @@
+Employer Module
+	Registration
+	Login
+	Post jobs with detailed job description
+	Ability to Search and view resume by key"ords, job category
+	create and edit a company pro+le
+	retrieve pass"ords reset by automated email
+	Job posting payment + invoice
+	optional - advertise -- promoted
+	
+Job Seeker Module
+	registration
+	login
+	edit user profile
+	Search jobs by location,categories, company,experience and key"ords!
+	Apply for a job "ith the click of a button
+	optional - save jobs
+	reset password by email
+	add CV as pdf file
+	Application history
+	Notification
+
+Admin Module
+	Registration and login
+	Manage Job Seeker and Employer Profiles(CRUD)
+	latest 10 registrated new users and employers
+	
+	
+	
+additional entities 
+notification
+	
