@@ -2,9 +2,9 @@ Employer Module
 	Registration
 	Login
 	Post jobs with detailed job description
-	Ability to Search and view resume by key"ords, job category
+	Ability to Search and view resume by keywords, job category
 	create and edit a company pro+le
-	retrieve pass"ords reset by automated email
+	retrieve passwords reset by automated email
 	Job posting payment + invoice
 	optional - advertise -- promoted
 	
@@ -12,8 +12,8 @@ Job Seeker Module
 	registration
 	login
 	edit user profile
-	Search jobs by location,categories, company,experience and key"ords!
-	Apply for a job "ith the click of a button
+	Search jobs by location,categories, company,experience and keywords!
+	Apply for a job with the click of a button
 	optional - save jobs
 	reset password by email
 	add CV as pdf file
