@@ -13,7 +13,11 @@ Job Seeker Module
 	login
 	edit user profile
 	Search jobs by location,categories, company,experience and keywords!
+<<<<<<< HEAD
 	Apply for a job with the click of a button
+=======
+	Apply for a job "ith the click of a button
+>>>>>>> ba0a154d57f810ddc5559769f484b4b44d8e0643
 	optional - save jobs
 	reset password by email
 	add CV as pdf file
