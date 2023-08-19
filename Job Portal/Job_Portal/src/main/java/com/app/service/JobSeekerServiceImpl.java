@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.ListAllJobSeekerDto;
 import com.app.entity.JobSeeker;
@@ -48,6 +49,12 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public List<JobSeeker> getAllSeekerList() {
 
 		return jsRepo.findAll();
+	}
+
+	@Override
+	public  JobSeeker getJobSeekerById(long jsid) {
+		
+		return jsRepo.findById(jsid).orElseThrow(()->new ResourceNotFoundException("Id not found"));
 	}
 
 	

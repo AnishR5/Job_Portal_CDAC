@@ -21,7 +21,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @ToString
-@NoArgsConstructor
+//@NoArgsConstructor
 @Setter
 @Table(name = "jobprovider")
 public class JobProvider {
