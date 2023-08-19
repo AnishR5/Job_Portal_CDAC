@@ -31,7 +31,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public String insertJobSeeker(InsertJobseekerDto dto) {
 		//InsertJobseekerDto dto1=new InsertJobseekerDto("abc", "ssd", "rt", "ani@gmmail.com", "werty", "234567", Gender.MALE, "wert", "sfrdt", "iji", "uihi", 2);
 		System.out.println(dto);
-		dto.setExperience(2);
+		
 		JobSeeker js=mapper.map(dto, JobSeeker.class);
 	
 		try {

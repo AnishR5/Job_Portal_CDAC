@@ -47,5 +47,36 @@ public class JobProvider {
 	private String phoneNo;
 	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Map<Long,Job> jobList=new HashMap<Long,Job>();
+	public JobProvider(String jpName, String userName, String password, @Email String email, String address,
+			String webSite, String phoneNo) {
+		super();
+		this.jpName = jpName;
+		this.userName = userName;
+		this.password = password;
+		this.email = email;
+		this.address = address;
+		this.webSite = webSite;
+		this.phoneNo = phoneNo;
+	}
+	public JobProvider(Long jpId, String jpName, String userName, String password, @Email String email, String address,
+			String webSite, String phoneNo) {
+		super();
+		this.jpId = jpId;
+		this.jpName = jpName;
+		this.userName = userName;
+		this.password = password;
+		this.email = email;
+		this.address = address;
+		this.webSite = webSite;
+		this.phoneNo = phoneNo;
+	}
+	
+	public JobProvider() {
+		
+	}
+	
+	
+	
+	
 
 }
