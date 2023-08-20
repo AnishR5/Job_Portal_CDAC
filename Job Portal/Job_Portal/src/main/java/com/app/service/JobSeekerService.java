@@ -1,10 +1,9 @@
 package com.app.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
+import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 
 public interface JobSeekerService {
@@ -14,6 +13,8 @@ public interface JobSeekerService {
 	List<JobSeeker> getAllSeekerList();
 
 	JobSeeker getJobSeekerById(long jsid);
+	
+	String signIn(Signindto dto);
 
 	String deleteJsById(long jsId);
 

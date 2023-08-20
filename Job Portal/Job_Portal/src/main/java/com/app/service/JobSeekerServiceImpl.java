@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.ListAllJobSeekerDto;
+import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 import com.app.repository.JobSeekerRepo;
 
@@ -68,4 +69,19 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return msg;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String signIn(Signindto dto) {
+		try {
+			jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
+		}catch (Exception e) {
+			return "Login failed";
+		}
+		return "Login Success";
+	}
+
+	
+	
+>>>>>>> ac4ee135bcc2f92ee05142a87fc18eec290a22fb
 }

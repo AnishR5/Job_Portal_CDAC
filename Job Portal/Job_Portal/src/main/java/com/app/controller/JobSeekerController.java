@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
+import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 import com.app.service.JobSeekerService;
 
@@ -33,7 +34,14 @@ public class JobSeekerController {
 	public ResponseEntity<?> insertJobSeeker(@RequestBody InsertJobseekerDto dto)
 	{
 		String result=jobSeekerService.insertJobSeeker(dto);
+		
 		return ResponseEntity.status(HttpStatus.OK).body(result);	
+	}
+	
+	@PostMapping("/signin")
+	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.signIn(dto));
 	}
 	
 	@GetMapping("/seekerlist")

@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,7 +46,7 @@ public class JobProvider {
 	private String webSite;
 	@Column(length = 40, nullable = false,unique = true)
 	private String phoneNo;
-	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 	private Map<Long,Job> jobList=new HashMap<Long,Job>();
 	public JobProvider(String jpName, String userName, String password, @Email String email, String address,
 			String webSite, String phoneNo) {
