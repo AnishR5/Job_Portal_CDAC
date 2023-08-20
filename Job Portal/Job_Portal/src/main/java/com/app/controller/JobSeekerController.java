@@ -34,6 +34,7 @@ public class JobSeekerController {
 	public ResponseEntity<?> insertJobSeeker(@RequestBody InsertJobseekerDto dto)
 	{
 		String result=jobSeekerService.insertJobSeeker(dto);
+		
 		return ResponseEntity.status(HttpStatus.OK).body(result);	
 	}
 	

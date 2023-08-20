@@ -1,66 +1,29 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 export default function NavBar() {
   return (
     <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <NavLink className="navbar-brand" to="/home">
-    Home
-  </NavLink>
-  <button
-    className="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span className="navbar-toggler-icon" />
-  </button>
-  <div className="collapse navbar-collapse" id="navbarNav">
-    <ul className="navbar-nav">
-      <li className="nav-item">
-        <NavLink className="nav-link" to="/jobseeker">
-          Job Seeker
-        </NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink className="nav-link" to="/jobprovider">
-          Job Provider
-        </NavLink>
-      </li>
-      <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="userDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                User
-              </NavLink>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="userDropdown"
-              >
-                <NavLink className="dropdown-item" to="/login">
-                  Login
-                </NavLink>
-                <NavLink className="dropdown-item" to="/register">
-                  Register
-                </NavLink>
-              </div>
-            </li>
-      
-    </ul>
-  </div>
-</nav>
-
+          <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand href="/">Job Portal</Navbar.Brand>
+          <Nav>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title="SignIn/SignUp"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/jobprovider/signin">Job Provider</NavDropdown.Item>
+              <NavDropdown.Item href="/jobseeker/signin">Job Seeker</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Container>
+      </Navbar>
       
     </div>
   )
