@@ -41,11 +41,15 @@ public class JobSeekerController {
 		return jobSeekerService.getAllSeekerList();
 	}
 	
-	@GetMapping("/{jsid}")
-	public JobSeeker getById(@PathVariable long jsid)
+	@GetMapping("/{jsId}")
+	public JobSeeker getById(@PathVariable long jsId)
 	{
-		return jobSeekerService.getJobSeekerById(jsid); 
+		return jobSeekerService.getJobSeekerById(jsId); 
 	}
 	
-
+	@DeleteMapping("/{jsId}")
+	public String deleteById(@PathVariable long jsId)
+	{
+		return jobSeekerService.deleteJsById(jsId);
+	}
 }

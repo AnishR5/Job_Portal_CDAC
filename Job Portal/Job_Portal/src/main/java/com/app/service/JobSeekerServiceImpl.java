@@ -1,7 +1,5 @@
 package com.app.service;
 
-
-
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -18,30 +16,33 @@ import com.app.repository.JobSeekerRepo;
 @Service
 @Transactional
 public class JobSeekerServiceImpl implements JobSeekerService {
-	
+
 	public JobSeekerServiceImpl() {
 		System.out.println("JobSeeker Service Started");
 	}
+
 	@Autowired
 	private JobSeekerRepo jsRepo;
-	
+
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	@Override
 	public String insertJobSeeker(InsertJobseekerDto dto) {
-		//InsertJobseekerDto dto1=new InsertJobseekerDto("abc", "ssd", "rt", "ani@gmmail.com", "werty", "234567", Gender.MALE, "wert", "sfrdt", "iji", "uihi", 2);
+		// InsertJobseekerDto dto1=new InsertJobseekerDto("abc", "ssd", "rt",
+		// "ani@gmmail.com", "werty", "234567", Gender.MALE, "wert", "sfrdt", "iji",
+		// "uihi", 2);
 		System.out.println(dto);
-		
-		JobSeeker js=mapper.map(dto, JobSeeker.class);
-	
+
+		JobSeeker js = mapper.map(dto, JobSeeker.class);
+
 		try {
 			System.out.println(js);
 			jsRepo.save(js);
-			
+
 		} catch (Exception e) {
 			return "Fail";
-		}				
+		}
 		return "Success";
 	}
 
@@ -52,11 +53,19 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public  JobSeeker getJobSeekerById(long jsid) {
-		
-		return jsRepo.findById(jsid).orElseThrow(()->new ResourceNotFoundException("Id not found"));
+	public JobSeeker getJobSeekerById(long jsid) {
+
+		return jsRepo.findById(jsid).orElseThrow(() -> new ResourceNotFoundException("Id not found"));
 	}
 
-	
-	
+	@Override
+	public String deleteJsById(long jsId) {
+		String msg = "Job Seeker Id does not exist";
+		if (jsRepo.existsById(jsId)) {
+			jsRepo.deleteById(jsId);
+			msg = "Job Seeker deleted";
+		}
+		return msg;
+	}
+
 }

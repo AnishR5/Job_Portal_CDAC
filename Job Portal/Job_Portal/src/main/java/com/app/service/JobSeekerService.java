@@ -15,5 +15,7 @@ public interface JobSeekerService {
 
 	JobSeeker getJobSeekerById(long jsid);
 
+	String deleteJsById(long jsId);
+
 
 }
