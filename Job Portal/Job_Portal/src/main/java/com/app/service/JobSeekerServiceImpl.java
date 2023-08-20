@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.ListAllJobSeekerDto;
+import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 import com.app.repository.JobSeekerRepo;
 
@@ -55,6 +56,16 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public  JobSeeker getJobSeekerById(long jsid) {
 		
 		return jsRepo.findById(jsid).orElseThrow(()->new ResourceNotFoundException("Id not found"));
+	}
+
+	@Override
+	public String signIn(Signindto dto) {
+		try {
+			jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
+		}catch (Exception e) {
+			return "Login failed";
+		}
+		return "Login Success";
 	}
 
 	

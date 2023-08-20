@@ -1,11 +1,15 @@
 package com.app.service;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.JPRegisterdto;
+import com.app.dto.Signindto;
 import com.app.entity.JobProvider;
 import com.app.repository.JobProviderRepo;
 
@@ -32,6 +36,28 @@ public class JobProviderServiceImpl implements JobProviderService {
 			return "Failed";
 		}
 		return "Success";
+	}
+
+	@Override
+	public List<JobProvider> getAllJP() {
+		
+		return jpRepo.findAll();
+	}
+
+	@Override
+	public JobProvider getJPbyID(Long jpid) {
+		
+		return jpRepo.findById(jpid).orElseThrow(()-> new ResourceNotFoundException("Cannot find id"));
+	}
+
+	@Override
+	public String signIn(Signindto dto) {
+		try {
+		JobProvider jp=jpRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("invalid credentials"));
+		}catch (Exception e) {
+			return "Login Failed";
+		}
+		return "Login Success";
 	}
 	
 
