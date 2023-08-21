@@ -8,25 +8,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.entity.Admin;
-import com.app.service.AdminService;
+import com.app.dto.ApplicationSubmitdto;
+import com.app.service.ApplicationService;
 
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/application")
+public class ApplicationController {
 	
-	public AdminController() {
-		System.out.println("Admin Controller Started");
+	public ApplicationController() {
+		System.out.println("Application Controller Started");
 	}
 	
 	@Autowired
-	private AdminService adminService;
+	private ApplicationService applService;
 	
-	
-	@PostMapping("/registration")
-	public ResponseEntity<?> registerAdmin(@RequestBody Admin admin)
+	@PostMapping
+	public ResponseEntity<?> jobApplication(@RequestBody ApplicationSubmitdto dto)
 	{
-		return ResponseEntity.status(HttpStatus.CREATED).body(adminService.insertAdmin(admin));
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
-
 }

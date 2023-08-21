@@ -76,6 +76,11 @@ public class JobProvider {
 		
 	}
 	
+	public void addJobIntoJobList(Job job)
+	{
+		jobList.put(job.getJobId(), job);
+	}
+	
 	
 	
 	
