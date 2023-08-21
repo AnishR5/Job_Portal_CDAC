@@ -55,5 +55,27 @@ public class Job {
 	private LocalDate applicationDeadline;
 	@OneToMany(mappedBy = "jobId",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Map<Long,Application> applicationList=new HashMap<Long, Application>();
+	public Long getJobId() {
+		return jobId;
+	}
+	public void setJobId(Long jobId) {
+		this.jobId = jobId;
+	}
+	public JobProvider getJpId() {
+		return jpId;
+	}
+	public void setJpId(JobProvider jpId) {
+		this.jpId = jpId;
+	}
+	public JobCategory getJcId() {
+		return jcId;
+	}
+	public void setJcId(JobCategory jcId) {
+		this.jcId = jcId;
+	}
+	
+	
+	
+	
 
 }
