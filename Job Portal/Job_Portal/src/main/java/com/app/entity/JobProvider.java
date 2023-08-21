@@ -46,7 +46,7 @@ public class JobProvider {
 	private String webSite;
 	@Column(length = 40, nullable = false,unique = true)
 	private String phoneNo;
-	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Map<Long,Job> jobList=new HashMap<Long,Job>();
 	public JobProvider(String jpName, String userName, String password, @Email String email, String address,
 			String webSite, String phoneNo) {

@@ -69,8 +69,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return msg;
 	}
 
-<<<<<<< HEAD
-=======
+
 	@Override
 	public String signIn(Signindto dto) {
 		try {
@@ -83,5 +82,4 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	
 	
->>>>>>> ac4ee135bcc2f92ee05142a87fc18eec290a22fb
 }
