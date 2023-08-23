@@ -70,7 +70,7 @@ public class Job {
 	private Location assignedLocationId;
 	
 	@Transient
-	@OneToMany(mappedBy = "assignedJobId",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy = "assignedJobId",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 	private Map<Long,Application> applicationList=new HashMap<Long, Application>();
 	
 	

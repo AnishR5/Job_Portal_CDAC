@@ -21,7 +21,7 @@ import com.app.service.JobSeekerService;
 
 @RestController
 @RequestMapping("/jobseeker")
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobSeekerController {
 	
 	public JobSeekerController() {

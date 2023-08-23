@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -58,6 +59,12 @@ public class JobServiceImpl implements JobService {
 			return "Failed";
 		}
 		return "Success";
+	}
+
+	@Override
+	public List<Job> listAllJobs() {
+		
+		return jobRepo.findAll();
 	}
 
 }

@@ -2,6 +2,11 @@ import React,{useState} from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { NavLink,Link } from 'react-router-dom';
 export default function Registration() {
+
+  const url = "http://localhost:7070/jobseeker/registration"; 
+
+  
+
   return (
     <>
      
@@ -166,7 +171,7 @@ export default function Registration() {
         </Row>
       </Container>
     </div>
-  )
+  
     </>
 
   );

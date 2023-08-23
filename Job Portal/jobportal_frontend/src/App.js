@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import HomeComponent from './components/HomeComponent';
 import Login from './components/Login';
 import Registration from './components/Registration';
+import Welcome from './components/Welcome';
+import JobList from './components/JobList';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path='/jobprovider/signin'element={<Login/>}></Route>
         <Route path='/jobseeker/signin'element={<Login/>}></Route>
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
+        <Route path='/jobseeker/welcome' element={<Welcome/>}></Route>
+        <Route path='/job/jobs' element={<JobList/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
     </div>
