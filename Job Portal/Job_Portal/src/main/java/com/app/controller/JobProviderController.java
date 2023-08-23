@@ -20,7 +20,7 @@ import com.app.service.JobProviderService;
 
 @RestController
 @RequestMapping("/jobprovider")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class JobProviderController {
 	
 	public JobProviderController() {

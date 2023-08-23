@@ -69,12 +69,12 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return msg;
 	}
 
-<<<<<<< HEAD
-
-=======
 //<<<<<<< HEAD
+//
 //=======
->>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
+////<<<<<<< HEAD
+////=======
+//>>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
 	@Override
 	public String signIn(Signindto dto) {
 		try {
@@ -87,8 +87,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	
 	
-<<<<<<< HEAD
-=======
-//>>>>>>> ac4ee135bcc2f92ee05142a87fc18eec290a22fb
->>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
+//<<<<<<< HEAD
+//=======
+////>>>>>>> ac4ee135bcc2f92ee05142a87fc18eec290a22fb
+//>>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
 }

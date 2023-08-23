@@ -1,7 +1,9 @@
 package com.app.entity;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,6 +42,7 @@ public class JobSeeker {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long jsId;
+	@Column(length = 100)
 	private String jsFullName;
 	@Column(length = 40, nullable = false, unique = true)
 	private String userName;
@@ -63,8 +67,10 @@ public class JobSeeker {
 	private String skill3;
 	private int experience;
 	private Blob resume;
-	@OneToMany(mappedBy = "jsId", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-	private Map<Long, Application> applicationList = new HashMap<Long, Application>();
+	
+	@Transient
+	@OneToMany(mappedBy = "assignedJsId", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	private Map<Long, Application> applicationList=new HashMap<Long, Application>();
 
 	public JobSeeker(String jsFullName, String userName, String password, String email, String address, String phoneNo,
 			Gender gender, String education, String skill1, String skill2, String skill3, int experience) {
@@ -102,5 +108,10 @@ public class JobSeeker {
 		this.skill2 = skill2;
 		this.skill3 = skill3;
 		this.experience = experience;
+	}
+	
+	public void addApplication(Application app)
+	{
+		applicationList.put(app.getApplicationId(), app);
 	}
 }

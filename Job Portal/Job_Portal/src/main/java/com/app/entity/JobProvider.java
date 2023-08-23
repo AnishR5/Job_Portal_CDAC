@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +24,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @ToString
-//@NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Table(name = "jobprovider")
 public class JobProvider {
@@ -46,8 +49,11 @@ public class JobProvider {
 	private String webSite;
 	@Column(length = 40, nullable = false,unique = true)
 	private String phoneNo;
-	@OneToMany(mappedBy = "jpId",cascade = CascadeType.ALL,orphanRemoval = true)
-	private Map<Long,Job> jobList=new HashMap<Long,Job>();
+	
+	@Transient
+	@OneToMany(mappedBy = "assignedJpId",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+	private Map<Long, Job> jobList=new HashMap<Long, Job>();
+	
 	public JobProvider(String jpName, String userName, String password, @Email String email, String address,
 			String webSite, String phoneNo) {
 		super();
@@ -72,9 +78,6 @@ public class JobProvider {
 		this.phoneNo = phoneNo;
 	}
 	
-	public JobProvider() {
-		
-	}
 	
 	public void addJobIntoJobList(Job job)
 	{

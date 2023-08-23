@@ -26,6 +26,6 @@ public class ApplicationController {
 	public ResponseEntity<?> jobApplication(@RequestBody ApplicationSubmitdto dto)
 	{
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		return ResponseEntity.status(HttpStatus.CREATED).body(applService.insertApplication(dto));
 	}
 }

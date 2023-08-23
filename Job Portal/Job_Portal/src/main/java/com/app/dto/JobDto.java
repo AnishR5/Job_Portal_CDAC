@@ -19,9 +19,9 @@ import lombok.ToString;
 @ToString
 public class JobDto {
 
-	private long jpId;
-	private long jcId;
-	private long locationId;
+	private long assignedJpId;
+	private long assignedJcId;
+	private long assignedLocationId;
 	private String jobTitle;
 	private String role;
 	private String keySkills;
