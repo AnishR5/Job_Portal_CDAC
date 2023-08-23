@@ -35,7 +35,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public String insertApplication(ApplicationSubmitdto dto) {
 		System.out.println(dto);
 		Application appl=mapper.map(dto, Application.class);
-		//System.out.println(appl);
+		System.out.println(appl);
 		JobSeeker js=jsService.getJobSeekerById(dto.getJsId());	
 		System.out.println(js);
 		Job job=jobRepo.findById(dto.getJobId()).get();		
