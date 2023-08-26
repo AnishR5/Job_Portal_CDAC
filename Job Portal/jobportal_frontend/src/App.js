@@ -9,6 +9,7 @@ import Welcome from './components/Welcome';
 import JobList from './components/JobList';
 import RegisterJobProvider from './components/RegisterJobProvider';
 import PostJob from './components/PostJob';
+import LoginJP from './components/LoginJP';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate replace to="/home"></Navigate>}></Route>
         <Route path='/home' element={<HomeComponent/>}></Route>
-        <Route path='/jobprovider/signin'element={<Login/>}></Route>
+        <Route path='/jobprovider/signin'element={<LoginJP/>}></Route>
         <Route path='/jobseeker/signin'element={<Login/>}></Route>
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
         <Route path='/jobseeker/welcome' element={<Welcome/>}></Route>

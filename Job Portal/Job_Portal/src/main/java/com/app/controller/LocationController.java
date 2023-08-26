@@ -16,8 +16,6 @@ import com.app.dto.LocationDto;
 import com.app.entity.Location;
 import com.app.service.LocationService;
 
-
-
 @RestController
 @RequestMapping("/location")
 @CrossOrigin(origins = "http://localhost:3000")

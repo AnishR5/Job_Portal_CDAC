@@ -12,12 +12,12 @@ export default function PostJob() {
         {
             assignedJpId: 0,
             assignedJcId: 0,
-            assignedLocationId: 0,
-            jobTitle: "string",
-            role: "string",
-            keySkills: "string",
+            assignedLocationId:0 ,
+            jobTitle: "",
+            role: "",
+            keySkills: "",
             salary: 0,
-            description: "string",
+            description: "",
             vacancies: 0,
             applicationDeadline: ""
           }
@@ -37,7 +37,7 @@ export default function PostJob() {
             })
             .catch(error => {
                 console.error(error);})
-    })
+    },[])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -184,10 +184,6 @@ export default function PostJob() {
                           value={formData.applicationDeadline}
                           onChange={handleChange}   />
                     </Form.Group>
-                    
-                    
-                     
-                    
                     <div className="d-grid">
                       <Button variant="primary" type="submit" onClick={handleSubmit}>
                         Post Job
