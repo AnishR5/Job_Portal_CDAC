@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.LocationDto;
 import com.app.entity.Location;
 import com.app.service.LocationService;
 
@@ -24,7 +25,7 @@ public class LocationController {
 	private LocationService locationService;
 	
 	@PostMapping
-	public ResponseEntity<?> saveLocationDetails(@RequestBody Location location)
+	public ResponseEntity<?> saveLocationDetails(@RequestBody LocationDto location)
 	{
 		String result = locationService.insertLocationDetails(location);
 		return ResponseEntity.status(HttpStatus.CREATED).body(result);
