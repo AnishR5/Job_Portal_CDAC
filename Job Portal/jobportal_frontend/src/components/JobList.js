@@ -46,17 +46,31 @@ export default function JobList() {
         <tr>
           <th>Job ID</th>
           <th>Job Title</th>
+          <th>Company</th>
           <th>Role</th>
           <th>Key Skills</th>
+          <th>Salary</th>
+          <th>Description</th>
+          <th>Application Deadline</th>
+          <th>Vacancies</th>
+          <th>Company Website</th>
+          
         </tr>
       </thead>
       <tbody>
         {jobs.map(job => (
           <tr key={job.jobId}>
             <td>{job.jobId}</td>
+            <td>{job.assignedJpId.jpName}</td>
             <td>{job.jobTitle}</td>
             <td>{job.role}</td>
-            <td>{job.keySkills}</td>   
+            <td>{job.keySkills}</td> 
+            <td>{job.salary}</td>
+            <td>{job.description}</td>
+            <td>{job.applicationDeadline}</td>
+            <td>{job.vacancies}</td>
+            <td>{job.assignedJpId.webSite}</td>
+            
             <td><form action='/application/apply'><Button variant="success" type="submit" onClick={() => handleJobApplication(job.jobId)}>Apply</Button></form></td>  
             
           </tr>
