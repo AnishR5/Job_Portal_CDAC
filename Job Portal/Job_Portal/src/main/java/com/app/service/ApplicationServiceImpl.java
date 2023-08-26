@@ -26,24 +26,25 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private ModelMapper mapper;
 	@Autowired
 	private JobRepo jobRepo;
-	
+	@Autowired
 	private JobSeekerService jsService;
 
 	@Override
 	public String insertApplication(ApplicationSubmitdto dto) {
-		System.out.println(dto);
-		Application appl=mapper.map(dto, Application.class);
-		System.out.println(appl);
-		JobSeeker js=jsService.getJobSeekerById(dto.getJsId());	
-		System.out.println(js);
-		Job job=jobRepo.findById(dto.getJobId()).get();		
-		System.out.println(job);
-		appl.setAssignedJobId(job);
-		appl.setAssignedJsId(js);
-		System.out.println(appl);
-		js.addApplication(appl);
-		job.addApplication(appl);
+		
 		try {
+			System.out.println(dto);
+			Application appl=mapper.map(dto, Application.class);
+			System.out.println(appl);
+			JobSeeker js=jsService.getJobSeekerById(dto.getJsId());	
+			System.out.println(js);
+			Job job=jobRepo.findById(dto.getJobId()).get();		
+			System.out.println(job);
+			appl.setAssignedJobId(job);
+			appl.setAssignedJsId(js);
+			System.out.println(appl);
+			js.addApplication(appl);
+			job.addApplication(appl);
 			applRepo.save(appl);
 		}catch (Exception e) {
 			return "Failed";

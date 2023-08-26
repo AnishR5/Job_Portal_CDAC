@@ -61,8 +61,8 @@ export default function JobList() {
         {jobs.map(job => (
           <tr key={job.jobId}>
             <td>{job.jobId}</td>
-            <td>{job.assignedJpId.jpName}</td>
             <td>{job.jobTitle}</td>
+            <td>{job.assignedJpId.jpName}</td>
             <td>{job.role}</td>
             <td>{job.keySkills}</td> 
             <td>{job.salary}</td>

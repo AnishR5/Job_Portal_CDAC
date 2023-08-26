@@ -77,7 +77,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public boolean signIn(Signindto dto,HttpSession session,HttpServletRequest request) {
 		try {
 			JobSeeker js=jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
-			System.err.println(js);
+			System.out.println(js);
 			
 			session.setAttribute("jobseeker", js);
 		}catch (Exception e) {
