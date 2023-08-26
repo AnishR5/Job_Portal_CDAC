@@ -1,7 +1,11 @@
+import React,{useState,useEffect} from 'react'
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
 
 export default function PostJob() {
+    const navigate=useNavigate();
     const [category, setcategory] = useState([]);
     const [location, setlocation] = useState([]);
     const [formData, setFormData] = useState(
@@ -26,6 +30,13 @@ export default function PostJob() {
         })
         .catch(error => {
             console.error(error);})
+
+            axios.get("http://localhost:7070/location/list")
+            .then(response =>{
+                setlocation(response.data)
+            })
+            .catch(error => {
+                console.error(error);})
     })
 
     const handleSubmit = async (e) => {
@@ -34,7 +45,7 @@ export default function PostJob() {
         try {
           const response = await axios.post("http://localhost:7070/job/insertjob", formData);
           console.log('Registration response:', response.data);
-          setSuccessMessage('Job Post successfull!');
+          
           navigate('/job/jobs');
         } catch (error) {
           console.error('Registration error:', error);
@@ -99,7 +110,7 @@ export default function PostJob() {
                           {location.map(locate => (
                             <option key={locate.locationId} value={locate.locationId}>{locate.locationName}</option>
                           ))}                         
-                          
+
                       </Form.Select>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -176,17 +187,6 @@ export default function PostJob() {
                     
                     
                      
-                    <Form.Group
-                      className="mb-3"
-                      controlId="formBasicPassword"
-                    >
-                      <Form.Label>Skill 3</Form.Label>
-                      <Form.Control type="text" placeholder="Skill3" 
-                         name="skill3"
-                         value={formData.skill3}
-                         onChange={handleChange}
-                      />
-                    </Form.Group>
                     
                     <div className="d-grid">
                       <Button variant="primary" type="submit" onClick={handleSubmit}>

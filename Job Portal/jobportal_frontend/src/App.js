@@ -8,6 +8,7 @@ import Registration from './components/Registration';
 import Welcome from './components/Welcome';
 import JobList from './components/JobList';
 import RegisterJobProvider from './components/RegisterJobProvider';
+import PostJob from './components/PostJob';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/jobseeker/welcome' element={<Welcome/>}></Route>
         <Route path='/job/jobs' element={<JobList/>}></Route>
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
+        <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
     </div>
