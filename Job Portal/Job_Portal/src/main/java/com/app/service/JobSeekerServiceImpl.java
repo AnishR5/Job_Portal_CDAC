@@ -2,6 +2,9 @@ package com.app.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,26 +72,21 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		return msg;
 	}
 
-//<<<<<<< HEAD
-//
-//=======
-////<<<<<<< HEAD
-////=======
-//>>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
+
 	@Override
-	public String signIn(Signindto dto) {
+	public boolean signIn(Signindto dto,HttpSession session,HttpServletRequest request) {
 		try {
-			jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
+			JobSeeker js=jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
+			System.err.println(js);
+			
+			session.setAttribute("jobseeker", js);
 		}catch (Exception e) {
-			return "Login failed";
+			return false;
 		}
-		return "Login Success";
+		return true;
 	}
 
 	
 	
-//<<<<<<< HEAD
-//=======
-////>>>>>>> ac4ee135bcc2f92ee05142a87fc18eec290a22fb
-//>>>>>>> 3b2ae164bc8ea59d371fe29e18393e8135b483ab
+
 }

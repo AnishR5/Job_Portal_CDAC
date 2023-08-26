@@ -4,34 +4,27 @@ import { NavLink,Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Registration() {
+
+export default function RegisterJobProvider() {
   const navigate=useNavigate();
   const [formData, setFormData] = useState({
-    jsFullName: '',
-    userName: '',
-    password: '',
-    email: '',
-    address: '',
-    phoneNo: '',
-    gender: 'MALE',
-    education: '',
-    skill1: '',
-    skill2: '',
-    skill3: '',
-    experience: 0,
+    jpName: "",
+    userName: "",
+    password: "",
+    email: "",
+    address: "",
+    webSite: "",
+    phoneNo: ""
   });
-
-  const [successMessage, setSuccessMessage] = useState('');
-  const url = "http://localhost:7070/jobseeker/registration"; 
+  const url = "http://localhost:7070/jobprovider/registration"; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(url, formData);
-      console.log('Registration response:', response.data);
-      setSuccessMessage('Registration successfull! Your account has been created.');
-      navigate('/jobseeker/signin');
+      console.log('Registration response:', response.data);     
+      navigate('/jobprovider/signin');
     } catch (error) {
       console.error('Registration error:', error);
       // Handle error
@@ -43,14 +36,9 @@ export default function Registration() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  
-
   return (
-    <>
-     
     <div>
-      <Container>
-      
+    <Container>      
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
           <div className="border border-2 border-primary"></div>
@@ -59,15 +47,15 @@ export default function Registration() {
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-center text-uppercase ">Registration</h2>
                   <div className="mb-3">
-                    <Form action='/jobseeker/signin' method='post'> 
+                    <Form action='/jobprovider/signin' method='post'> 
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">
-                          Full Name
+                          Company Name
                         </Form.Label>
                         <Form.Control  type="text"
                             placeholder="Enter Name"
-                            name="jsFullName"
-                            value={formData.jsFullName}
+                            name="jpName"
+                            value={formData.jpName}
                             onChange={handleChange} />
                       </Form.Group>
 
@@ -120,8 +108,13 @@ export default function Registration() {
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
-                        controlId="formBasicCheckbox"
+                        controlId="formBasicPassword"
                       >
+                        <Form.Label>WebSite</Form.Label>
+                        <Form.Control type="text" placeholder="www.abc.com"
+                            name="webSite"
+                            value={formData.webSite}
+                            onChange={handleChange}   />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -133,94 +126,7 @@ export default function Registration() {
                            value={formData.phoneNo}
                            onChange={handleChange}
                         />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Gender</Form.Label> </Form.Group>
-                      <Form.Select aria-label="Default select example"
-                            name="gender"
-                            value={formData.gender}
-                            onChange={handleChange}
-                            >                            
-                            <option value="MALE">Male</option>
-                            <option value="FEMALE">Female</option>
-                        </Form.Select>
-                        <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Education</Form.Label>
-                        <Form.Control type="text" placeholder="Education"
-                           name="education"
-                           value={formData.education}
-                           onChange={handleChange} 
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Skill1</Form.Label>
-                        <Form.Control type="text" placeholder="Skill1" 
-                           name="skill1"
-                           value={formData.skill1}
-                           onChange={handleChange}
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Skill 2</Form.Label>
-                        <Form.Control type="text" placeholder="Skill2"
-                           name="skill2"
-                           value={formData.skill2}
-                           onChange={handleChange}
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Skill 3</Form.Label>
-                        <Form.Control type="text" placeholder="Skill3" 
-                           name="skill3"
-                           value={formData.skill3}
-                           onChange={handleChange}
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group>
+                      </Form.Group>                    
                       <div className="d-grid">
                         <Button variant="primary" type="submit" onClick={handleSubmit}>
                           Create Account
@@ -230,7 +136,7 @@ export default function Registration() {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                       Already have an account??{" "}
-                      <NavLink to={`/jobseeker/signin`} >SignIn</NavLink>
+                      <NavLink to={`/jobprovider/signin`} >SignIn</NavLink>
                         {/* <a href="{''}" className="text-primary fw-bold">
                           Sign In
                         </a> */}
@@ -244,8 +150,5 @@ export default function Registration() {
         </Row>
       </Container>
     </div>
-  
-    </>
-
-  );
+  )
 }

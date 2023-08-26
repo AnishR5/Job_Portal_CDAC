@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+
 
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
@@ -19,6 +21,25 @@ export default function JobList() {
       });
   }, []);
 
+  const handleJobApplication = async (jobId) => {
+    if (!jobId) {
+      console.log("Please select a job to apply for.");
+      return;
+    }
+  
+    try {
+      const response = await axios.post(
+        `http://localhost:7070/job/application/${jobId}`, // Update the URL with the job ID
+       
+      );
+      console.log("Job application response:", response.data);
+      // Handle the response or show a success message
+    } catch (error) {
+      console.error("Job application error:", error);
+      // Handle the error
+    }
+  };
+
   return (
     <Table striped bordered hover variant="dark">
       <thead>
@@ -27,7 +48,6 @@ export default function JobList() {
           <th>Job Title</th>
           <th>Role</th>
           <th>Key Skills</th>
-          {/* Add more columns as needed */}
         </tr>
       </thead>
       <tbody>
@@ -36,8 +56,9 @@ export default function JobList() {
             <td>{job.jobId}</td>
             <td>{job.jobTitle}</td>
             <td>{job.role}</td>
-            <td>{job.keySkills}</td>     
-            {/* Add more columns as needed */}
+            <td>{job.keySkills}</td>   
+            <td><form action='/application/apply'><Button variant="success" type="submit" onClick={() => handleJobApplication(job.jobId)}>Apply</Button></form></td>  
+            
           </tr>
         ))}
       </tbody>

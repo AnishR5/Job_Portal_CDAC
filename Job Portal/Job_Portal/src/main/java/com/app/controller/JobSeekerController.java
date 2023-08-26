@@ -1,6 +1,10 @@
 package com.app.controller;
 
+import java.net.http.HttpRequest;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,10 +44,13 @@ public class JobSeekerController {
 	}
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto)
+	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto,HttpSession session,HttpServletRequest request)
 	{
-		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.signIn(dto));
+		boolean res=jobSeekerService.signIn(dto,session,request);
+		return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
+	
+
 	
 	@GetMapping("/seekerlist")
 	public List<JobSeeker> listJobSeeker(){

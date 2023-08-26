@@ -1,6 +1,10 @@
 package com.app.service;
 
+import java.net.http.HttpRequest;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.Signindto;
@@ -14,7 +18,7 @@ public interface JobSeekerService {
 
 	JobSeeker getJobSeekerById(long jsid);
 	
-	String signIn(Signindto dto);
+	boolean signIn(Signindto dto,HttpSession session, HttpServletRequest request);
 
 	String deleteJsById(long jsId);
 

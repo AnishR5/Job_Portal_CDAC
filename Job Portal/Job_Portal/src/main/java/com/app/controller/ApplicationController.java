@@ -22,7 +22,7 @@ public class ApplicationController {
 	@Autowired
 	private ApplicationService applService;
 	
-	@PostMapping
+	@PostMapping("/apply")
 	public ResponseEntity<?> jobApplication(@RequestBody ApplicationSubmitdto dto)
 	{
 		

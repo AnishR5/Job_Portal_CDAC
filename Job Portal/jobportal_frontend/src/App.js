@@ -7,6 +7,8 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Welcome from './components/Welcome';
 import JobList from './components/JobList';
+import RegisterJobProvider from './components/RegisterJobProvider';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
         <Route path='/jobseeker/welcome' element={<Welcome/>}></Route>
         <Route path='/job/jobs' element={<JobList/>}></Route>
+        <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
     </div>
