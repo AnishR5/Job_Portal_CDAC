@@ -25,7 +25,7 @@ public interface JobSeekerService {
 
 	String deleteJsById(long jsId);
 
-	String updateJSById(long jsId, JSUpdateDto updateDto);
+	String updateJSByUserName(String userName, JSUpdateDto updateDto);
 
-
+	JobSeeker getJobSeekerByUserName(String userName);
 }

@@ -9,7 +9,7 @@ public interface JobService {
 
 	String insertJob(JobDto dto);
 	
-	List<Job> listAllJobs();
+	List<Job> listAllJobs(String userName);
 
 	
 }

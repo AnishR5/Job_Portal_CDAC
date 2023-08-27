@@ -33,5 +33,5 @@ public class InsertJobseekerDto {
 	
 	private String skill3;
 	private int experience;
-	private MultipartFile resume;
+	//private MultipartFile resume;
 }

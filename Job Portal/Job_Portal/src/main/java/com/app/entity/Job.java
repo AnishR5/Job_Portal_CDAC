@@ -73,6 +73,8 @@ public class Job {
 	@OneToMany(mappedBy = "assignedJobId",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 	private Map<Long,Application> applicationList=new HashMap<Long, Application>();
 	
+	@Transient
+	private Boolean isApplied = false;
 	
 	public void addApplication(Application appl)
 	{

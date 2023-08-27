@@ -14,7 +14,7 @@ import JSHome from './components/JSHome';
 import LoginAdmin from './components/LoginAdmin';
 import AdminHome from './components/AdminHome';
 import Logout from './components/Logout';
-
+import JSUpdate from './components/JSUpdate';
 function App() {
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
         <Route path='/jobseeker/signin'element={<Login/>}></Route>
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
         <Route path='/jobseeker/home' element={<JSHome></JSHome>}></Route>
+        <Route path='/jobseeker/update' element={<JSUpdate />}></Route>
         <Route path='/job/jobs' element={<JobList/>}></Route>
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
         <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>

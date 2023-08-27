@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +33,9 @@ public class JobController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jobResult);
 	}
 	
-	@GetMapping("/jobs")
-	public List<Job> getAllJobs()
+	@GetMapping("/jobs/{userName}")
+	public List<Job> getAllJobs(@PathVariable String userName)
 	{
-		return jobService.listAllJobs();
+		return jobService.listAllJobs(userName);
 	}
 }

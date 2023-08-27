@@ -93,6 +93,7 @@ export default function PostJob() {
                           value={formData.assignedJcId}
                           onChange={handleChange}
                           >     
+                          <option value='' selected></option>
                           {category.map(cat=>(
                             <option key={cat.jcId} value={cat.jcId}>{cat.jcName}</option>
                           ))}                       
@@ -109,6 +110,7 @@ export default function PostJob() {
                           value={formData.assignedLocationId}
                           onChange={handleChange}
                           >   
+                          <option value='' selected></option>
                           {location.map(locate => (
                             <option key={locate.locationId} value={locate.locationId}>{locate.locationName}</option>
                           ))}                         

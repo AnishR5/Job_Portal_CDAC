@@ -16,10 +16,13 @@ export default function JSNavBar() {
         <Nav className="me-auto">
         <Nav.Link href="/jobseeker/home">Home</Nav.Link>
         <Nav.Link href="/job/jobs">All Jobs</Nav.Link>
+        <Nav.Link href='/jobseeker/update'>Update</Nav.Link>
         </Nav>
+        <Nav>
         <Navbar.Collapse className="justify-content-end">
           <Nav.Link href='/logout'>SignOut</Nav.Link>
         </Navbar.Collapse>
+        </Nav>
       </Container>
     </Navbar>
   </div>

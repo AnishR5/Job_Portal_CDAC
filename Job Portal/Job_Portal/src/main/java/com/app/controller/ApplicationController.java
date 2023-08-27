@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApplicationSubmitdto;
@@ -36,9 +37,9 @@ public class ApplicationController {
 	
 	@PostMapping("/apply/{jobId}")
 	public ResponseEntity<?> jobApplication(@PathVariable long jobId,
-			@RequestBody ApplicationSubmitdto dto)
+			@RequestBody String userName)
 	{
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(applService.insertApplication(dto, jobId));
+				.body(applService.insertApplication(userName, jobId));
 	}
 }

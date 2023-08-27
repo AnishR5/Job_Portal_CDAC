@@ -1,17 +1,17 @@
 package com.app.service;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.dto.ApplicationSubmitdto;
 import com.app.entity.Application;
 import com.app.entity.Job;
 import com.app.entity.JobSeeker;
 import com.app.entity.JobStatus;
 import com.app.repository.ApplicationRepo;
 import com.app.repository.JobRepo;
+import com.app.repository.JobSeekerRepo;
 
 @Service
 @Transactional
@@ -24,12 +24,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private ApplicationRepo applRepo;
 	@Autowired
-	private ModelMapper mapper;
-	@Autowired
 	private JobRepo jobRepo;
 	@Autowired
-	private JobSeekerService jsService;
-
+	private JobSeekerRepo jobSeekerRepo;
 	/*
 	 * @Override public String insertApplication(ApplicationSubmitdto dto) {
 	 * 
@@ -44,18 +41,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 	 */
 	
 	@Override
-	public String insertApplication(ApplicationSubmitdto dto, long jobId) {
-		
+	public String insertApplication(String userName, long jobId) {
 		try {
-			System.out.println(dto);
-			Application appl=mapper.map(dto, Application.class);
+			JSONObject jsonObject= new JSONObject(userName);
+			userName = jsonObject.getString("userName");
+			JobSeeker jobSeeker = jobSeekerRepo.findByUserName(userName).get();
+			Application appl=new Application();
 			System.out.println(appl);
-			JobSeeker js=jsService.getJobSeekerById(1);	
-			System.out.println(js);
 			Job job=jobRepo.findById(jobId).get();		
-			System.out.println(job);
 			appl.setAssignedJobId(job);
-			appl.setAssignedJsId(js);
+			appl.setAssignedJsId(jobSeeker);
 			appl.setStatus(JobStatus.APPLIED);
 			System.out.println(appl);
 			applRepo.save(appl);

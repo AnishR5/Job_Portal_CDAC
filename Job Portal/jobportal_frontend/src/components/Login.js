@@ -30,7 +30,6 @@ export default function Login() {
       const token  =  response.data.token;
       localStorage.setItem('isLoggedIn',true);
       localStorage.setItem('userName',formData.userName);
-     // localStorage.setItem('passwords',formData.password);
       localStorage.setItem('token',token);
       setAuthToken(token);
           

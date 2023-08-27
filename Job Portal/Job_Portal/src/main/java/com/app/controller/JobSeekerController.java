@@ -51,7 +51,7 @@ public class JobSeekerController {
 //	}
 	
 	@PostMapping("/registration")
-	public ResponseEntity<?> insertJobSeeker(@RequestPart InsertJobseekerDto dto)
+	public ResponseEntity<?> insertJobSeeker(@RequestBody InsertJobseekerDto dto)
 	{
 		String result=jobSeekerService.insertJobSeeker(dto);
 		
@@ -73,6 +73,12 @@ public class JobSeekerController {
 	public JobSeeker getById(@PathVariable long jsId)
 	{
 		return jobSeekerService.getJobSeekerById(jsId); 
+	}
+	
+	@GetMapping("/getJSDetails/{userName}")
+	public JobSeeker getByUserName(@PathVariable String userName)
+	{
+		return jobSeekerService.getJobSeekerByUserName(userName); 
 	}
 	
 	@DeleteMapping("/delete/{jsId}")
@@ -97,10 +103,10 @@ public class JobSeekerController {
 		request.getSession().invalidate();
 	}
 	
-	@PutMapping("/{jsId}")
-	public String updateJS(@PathVariable long jsId,@RequestBody JSUpdateDto updateDto)
+	@PostMapping("/updateJS/{userName}")
+	public String updateJS(@PathVariable String userName,@RequestBody JSUpdateDto updateDto)
 	{
-		String result = jobSeekerService.updateJSById(jsId,updateDto);
+		String result = jobSeekerService.updateJSByUserName(userName,updateDto);
 		return result;
 	}
 }

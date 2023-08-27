@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dto.JobDto;
+import com.app.entity.Application;
 import com.app.entity.Job;
 import com.app.entity.JobCategory;
 import com.app.entity.JobProvider;
+import com.app.entity.JobSeeker;
 import com.app.entity.Location;
+import com.app.repository.ApplicationRepo;
 import com.app.repository.JobCategoryRepo;
 import com.app.repository.JobRepo;
+import com.app.repository.JobSeekerRepo;
 import com.app.repository.LocationRepo;
 
 @Service
@@ -29,12 +33,12 @@ public class JobServiceImpl implements JobService {
 	private LocationRepo locationRepo;
 	@Autowired
 	private JobCategoryRepo jobCategoryRepo;
-	
+	@Autowired
+	private JobSeekerRepo jobSeekerRepo;
 	@Autowired
 	private JobProviderService jpService;
-	
-	
-
+	@Autowired
+	private ApplicationRepo applicationRepo;
 	@Autowired
 	private ModelMapper mapper;
 
@@ -42,9 +46,9 @@ public class JobServiceImpl implements JobService {
 	public String insertJob(JobDto dto) {
 		try {
 			Job job = mapper.map(dto, Job.class);
-			
-			JobProvider jp=jpService.getJPbyID(dto.getAssignedJpId());
-			
+
+			JobProvider jp = jpService.getJPbyID(dto.getAssignedJpId());
+
 			job.setAssignedJpId(jp);
 //			job.getAssignedJcId(jobCategoryRepo.findById(dto.getAssignedJcId()));
 //			Optional<JobProvider> jobProvider = jobProviderRepo.findById(dto.getJpId());			
@@ -62,9 +66,18 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public List<Job> listAllJobs() {
-		
-		return jobRepo.findAll();
+	public List<Job> listAllJobs(String userName) {
+		List<Job> listJob = jobRepo.findAll();
+		JobSeeker jobSeeker = jobSeekerRepo.findByUserName(userName).get();
+		for (Job job : listJob) {
+			for (Application app : applicationRepo.findByAssignedJobId(job)) {
+				if (app.getAssignedJsId().getJsId().equals(jobSeeker.getJsId())) {
+					job.setIsApplied(true);
+					break;
+				}
+			}
+		}
+		return listJob;
 	}
 
 }

@@ -1,18 +1,12 @@
 package com.app.service;
 
-import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
@@ -86,6 +80,12 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 		return jsRepo.findById(jsid).orElseThrow(() -> new ResourceNotFoundException("Id not found"));
 	}
+	
+	@Override
+	public JobSeeker getJobSeekerByUserName(String userName) {
+
+		return jsRepo.findByUserName(userName).orElseThrow(() -> new ResourceNotFoundException("Id not found"));
+	}
 
 	@Override
 	public String deleteJsById(long jsId) {
@@ -123,8 +123,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-	public String updateJSById(long jsId, JSUpdateDto updateDto) {
-		Optional<JobSeeker> existingId = jsRepo.findById(jsId);
+	public String updateJSByUserName(String userName, JSUpdateDto updateDto) {
+		Optional<JobSeeker> existingId = jsRepo.findByUserName(userName);
 		if (existingId.isPresent()) {
 			JobSeeker existingJobSeeker = existingId.get();
 			existingJobSeeker.setJsFullName(updateDto.getJsFullName());

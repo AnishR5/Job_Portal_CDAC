@@ -7,12 +7,11 @@ import JSNavBar from './JSNavBar';
 
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
-  const [buttonClicked,setButtonClicked] =useState(false);
   const currentDate = new Date();
 
   let userName = localStorage.getItem('userName');
   const userLoggedIn = Boolean(userName);
-  const url = "http://localhost:7070/job/jobs";
+  const url = `http://localhost:7070/job/jobs/${userName}`;
 
   useEffect(() => {
     // Fetch the list of jobs from the API
@@ -34,10 +33,18 @@ export default function JobList() {
   
     try {
       const response = await axios.post(
-        `http://localhost:7070/job/application/apply/${jobId}`, // Update the URL with the job ID
+        `http://localhost:7070/application/apply/${jobId}`, {
+            userName: userName
+        }
+          // Update the URL with the job ID
        
       );
       console.log("Job application response:", response.data);
+      if(response.data === 'Success'){
+        alert("Applied for Job Successfully");
+      } else {
+        alert("Application failed");
+      }
       // Handle the response or show a success message
     } catch (error) {
       console.error("Job application error:", error);
@@ -61,7 +68,7 @@ export default function JobList() {
           <th>Application Deadline</th>
           <th>Vacancies</th>
           <th>Company Website</th>
-          
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -85,9 +92,9 @@ export default function JobList() {
             {currentDate >new Date(job.applicationDeadline)?
             (<Button variant="success" disabled>Application Closed</Button>)  :
             userLoggedIn ? 
-            (!job.isApplied ? <Button variant="success" type="submit" 
-            onClick={() => {handleJobApplication(job.jobId); setButtonClicked(true);} }
-            disabled={buttonClicked}>Apply</Button>:<Button variant="success" disabled>Applied</Button>)
+            (!job.isApplied ? <Button variant="success" type="submit" id={job.jobId}
+            onClick={() => {handleJobApplication(job.jobId);} }>
+              Apply</Button>:<Button variant="success" disabled>Applied</Button>)
             :(<Button variant="success" disabled>Login To Apply</Button>)}</form></td>  
           </tr>
         ))}
