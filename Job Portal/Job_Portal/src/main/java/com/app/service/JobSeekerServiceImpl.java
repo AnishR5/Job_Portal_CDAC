@@ -36,8 +36,33 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	@Autowired
 	private ModelMapper mapper;
 
+//	@Override
+//	public String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request) {
+//		
+//		System.out.println(dto);
+//
+//		JobSeeker js = mapper.map(dto, JobSeeker.class);
+//
+//		try {
+//			System.out.println(js);
+//			jsRepo.save(js);
+//			 if (resume != null && !resume.isEmpty()) {
+//				 Blob resumeBlob = new SerialBlob(resume.getBytes());
+//
+//		            // Set the resume field as a Blob in the entity
+//		            js.setResume(resumeBlob);
+//		            
+//		        }
+//			 jsRepo.save(js); // Update the entity to associate the resume
+//
+//		} catch (Exception e) {
+//			return "Fail";
+//		}
+//		return "Success";
+//	}
+	
 	@Override
-	public String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request) {
+	public String insertJobSeeker(InsertJobseekerDto dto) {
 		
 		System.out.println(dto);
 
@@ -46,14 +71,14 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		try {
 			System.out.println(js);
 			jsRepo.save(js);
-			 if (resume != null && !resume.isEmpty()) {
-				 Blob resumeBlob = new SerialBlob(resume.getBytes());
-
-		            // Set the resume field as a Blob in the entity
-		            js.setResume(resumeBlob);
-		            
-		        }
-			 jsRepo.save(js); // Update the entity to associate the resume
+//			 if (resume != null && !resume.isEmpty()) {
+//				 Blob resumeBlob = new SerialBlob(resume.getBytes());
+//
+//		            // Set the resume field as a Blob in the entity
+//		            js.setResume(resumeBlob);
+//		            
+//		        }
+//			 jsRepo.save(js); // Update the entity to associate the resume
 
 		} catch (Exception e) {
 			return "Fail";

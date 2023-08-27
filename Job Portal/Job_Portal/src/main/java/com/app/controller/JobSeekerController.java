@@ -40,10 +40,18 @@ public class JobSeekerController {
 	@Autowired
 	private JobSeekerService jobSeekerService;
 	
+//	@PostMapping("/registration")
+//	public ResponseEntity<?> insertJobSeeker(@RequestPart InsertJobseekerDto dto,@RequestPart(required = false) MultipartFile resume,MultipartHttpServletRequest request )
+//	{
+//		String result=jobSeekerService.insertJobSeeker(dto,resume,request);
+//		
+//		return ResponseEntity.status(HttpStatus.OK).body(result);	
+//	}
+	
 	@PostMapping("/registration")
-	public ResponseEntity<?> insertJobSeeker(@RequestPart InsertJobseekerDto dto,@RequestPart(required = false) MultipartFile resume,MultipartHttpServletRequest request )
+	public ResponseEntity<?> insertJobSeeker(@RequestPart InsertJobseekerDto dto)
 	{
-		String result=jobSeekerService.insertJobSeeker(dto,resume,request);
+		String result=jobSeekerService.insertJobSeeker(dto);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(result);	
 	}
@@ -65,7 +73,7 @@ public class JobSeekerController {
 		return jobSeekerService.getJobSeekerById(jsId); 
 	}
 	
-	@DeleteMapping("/{jsId}")
+	@DeleteMapping("/delete/{jsId}")
 	public String deleteById(@PathVariable long jsId)
 	{
 		return jobSeekerService.deleteJsById(jsId);
