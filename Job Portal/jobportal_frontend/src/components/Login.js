@@ -3,6 +3,7 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { useNavigate ,NavLink} from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './NavBar';
+import { setAuthToken } from './axiosHelper';
 
 export default function Login() {
   const navigate=useNavigate()
@@ -19,10 +20,19 @@ export default function Login() {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+
+       
     
         try {
           const response = await axios.post("http://localhost:7070/jobseeker/signin", formData);
           console.log('Registration response:', response.data);
+          console.log(response);
+      const token  =  response.data.token;
+      localStorage.setItem('isLoggedIn',true);
+      localStorage.setItem('userName',formData.userName);
+     // localStorage.setItem('passwords',formData.password);
+      localStorage.setItem('token',token);
+      setAuthToken(token);
           
           navigate('/jobseeker/home');
         } catch (error) {

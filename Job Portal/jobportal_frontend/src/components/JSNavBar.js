@@ -7,18 +7,7 @@ import axios from 'axios';
 
 export default function JSNavBar() {
     const navigate =useNavigate()
-    const handleSignOut = () => {
-        axios.get('/jobseeker/signout', {
-          withCredentials: true // Send cookies with the request
-        })
-        .then(response => {
-          // Handle successful sign-out, navigate to login page
-          navigate('/'); // Use useNavigate to navigate
-        })
-        .catch(error => {
-          console.error('Error during sign-out:', error);
-        });
-      };
+    
   return (
     <div>
     <Navbar bg="dark" data-bs-theme="dark">
@@ -29,7 +18,7 @@ export default function JSNavBar() {
         <Nav.Link href="/job/jobs">All Jobs</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link onClick={handleSignOut}>SignOut</Nav.Link>
+          <Nav.Link href='/logout'>SignOut</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

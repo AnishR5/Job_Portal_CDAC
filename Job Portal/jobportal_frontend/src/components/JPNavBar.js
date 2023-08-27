@@ -14,7 +14,7 @@ export default function JPNavBar() {
             <Nav.Link href="/jobprovider/insertjob">Post Job</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
-            <Nav.Link href="/jobprovider/signout">SignOut</Nav.Link>
+            <Nav.Link href="/logout">SignOut</Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

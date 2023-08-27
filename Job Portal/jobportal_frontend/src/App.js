@@ -13,7 +13,7 @@ import JPHome from './components/JPHome';
 import JSHome from './components/JSHome';
 import LoginAdmin from './components/LoginAdmin';
 import AdminHome from './components/AdminHome';
-
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
         <Route path='/jobprovider/signin'element={<LoginJP/>}></Route>
         <Route path='/admin/signin' element={<LoginAdmin></LoginAdmin>}></Route>
         <Route path='/admin/home' element={<AdminHome></AdminHome>}></Route>
+        <Route path='/logout' element={<Logout/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
     </div>

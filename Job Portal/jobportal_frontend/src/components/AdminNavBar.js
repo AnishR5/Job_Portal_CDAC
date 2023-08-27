@@ -13,7 +13,7 @@ export default function AdminNavBar() {
           <Nav.Link href="/admin/home">Home</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href="/admin/signout">SignOut</Nav.Link>
+          <Nav.Link href="/logout">SignOut</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

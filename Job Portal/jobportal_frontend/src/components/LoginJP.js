@@ -3,6 +3,7 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { useNavigate,NavLink } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './NavBar';
+import { setAuthToken } from './axiosHelper';
 
 export default function LoginJP() {
     const navigate=useNavigate()
@@ -23,7 +24,12 @@ export default function LoginJP() {
         try {
           const response = await axios.post("http://localhost:7070/jobprovider/signin", formData);
           console.log('Sign-in response:', response.data);
-          
+          const token  =  response.data.token;
+      localStorage.setItem('isLoggedIn',true);
+      localStorage.setItem('userName',formData.userName);
+     // localStorage.setItem('passwords',formData.password);
+      localStorage.setItem('token',token);
+      setAuthToken(token);
           navigate('/jobprovider/home')
         } catch (error) {
           console.error('Sign-in error:', error);
