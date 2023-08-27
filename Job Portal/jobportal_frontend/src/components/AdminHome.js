@@ -54,7 +54,7 @@ export default function AdminHome() {
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
-          <th>JP ID</th>
+          <th>JS ID</th>
           <th>Name</th>
           <th>User Name</th>
           <th>Email</th>

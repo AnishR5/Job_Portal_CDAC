@@ -19,7 +19,7 @@ public interface JobSeekerService {
 
 	JobSeeker getJobSeekerById(long jsid);
 	
-	boolean signIn(Signindto dto, HttpServletRequest request);
+	JobSeeker signIn(Signindto dto);
 
 	String deleteJsById(long jsId);
 

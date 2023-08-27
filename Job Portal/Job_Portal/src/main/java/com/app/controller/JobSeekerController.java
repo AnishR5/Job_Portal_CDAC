@@ -51,12 +51,9 @@ public class JobSeekerController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto,HttpServletRequest request)
 	{
-		boolean res=jobSeekerService.signIn(dto,request);
-		return ResponseEntity.status(HttpStatus.OK).body(res);
+		return ResponseEntity.status(HttpStatus.OK).body(jobSeekerService.signIn(dto));
 	}
-	
 
-	
 	@GetMapping("/seekerlist")
 	public List<JobSeeker> listJobSeeker(){
 		return jobSeekerService.getAllSeekerList();

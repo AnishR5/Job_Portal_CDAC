@@ -14,6 +14,6 @@ public interface JobProviderService {
 	
 	JobProvider getJPbyID(Long jpid);
 	
-	String signIn(Signindto dto);
+	JobProvider signIn(Signindto dto);
 
 }
