@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.AdminRegisterDto;
+import com.app.dto.Signindto;
 import com.app.entity.Admin;
 import com.app.service.AdminService;
 
@@ -26,9 +28,15 @@ public class AdminController {
 	
 	
 	@PostMapping("/registration")
-	public ResponseEntity<?> registerAdmin(@RequestBody Admin admin)
+	public ResponseEntity<?> registerAdmin(@RequestBody AdminRegisterDto admin)
 	{
 		return ResponseEntity.status(HttpStatus.CREATED).body(adminService.insertAdmin(admin));
+	}
+	
+	@PostMapping("/signin")
+	public ResponseEntity<?> signIn(@RequestBody Signindto dto)
+	{
+		return ResponseEntity.ok(adminService.signIn(dto));
 	}
 
 }

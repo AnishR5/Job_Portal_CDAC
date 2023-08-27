@@ -20,18 +20,32 @@ export default function Registration() {
     skill2: '',
     skill3: '',
     experience: 0,
+    resume: null
   });
 
   const [successMessage, setSuccessMessage] = useState('');
   const url = "http://localhost:7070/jobseeker/registration"; 
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevData) => ({ ...prevData, resume: file }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+
     try {
-      const response = await axios.post(url, formData);
+      formDataToSend.append('resume', formData.resume);
+      const response = await axios.post(url, formDataToSend, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       console.log('Registration response:', response.data);
-      setSuccessMessage('Registration successfull! Your account has been created.');
+      
       navigate('/jobseeker/signin');
     } catch (error) {
       console.error('Registration error:', error);
@@ -222,6 +236,15 @@ export default function Registration() {
                         className="mb-3"
                         controlId="formBasicCheckbox"
                       >
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="resume">
+                          <Form.Label>Upload Resume (PDF)</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept=".pdf"
+                            name="resume"
+                            onChange={handleFileChange}
+                          />
                       </Form.Group>
                       <div className="d-grid">
                         <Button variant="primary" type="submit" onClick={handleSubmit}>

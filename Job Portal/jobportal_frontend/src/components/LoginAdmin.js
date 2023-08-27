@@ -4,8 +4,8 @@ import { useNavigate ,NavLink} from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './NavBar';
 
-export default function Login() {
-  const navigate=useNavigate()
+export default function LoginAdmin() {
+    const navigate=useNavigate()
     const [formData,setFormData]=useState(
             {
                 userName: "",
@@ -21,10 +21,10 @@ export default function Login() {
         e.preventDefault();
     
         try {
-          const response = await axios.post("http://localhost:7070/jobseeker/signin", formData);
+          const response = await axios.post("http://localhost:7070/admin/signin", formData);
           console.log('Registration response:', response.data);
           
-          navigate('/jobseeker/home');
+          navigate('/admin/home');
         } catch (error) {
           console.error('Registration error:', error);
           // Handle error
@@ -44,7 +44,7 @@ export default function Login() {
               <div className="mb-3 mt-md-4">
                 <h2 className="fw-bold mb-2 text-center text-uppercase ">Login</h2>
                 <div className="mb-3">
-                  <Form action='/jobprovider/signin' method='post'> 
+                  <Form action='/admin/signin' method='post'> 
                     <Form.Group className="mb-3" controlId="Name">
                       <Form.Label className="text-center">
                         UserName
@@ -69,9 +69,6 @@ export default function Login() {
                       </Button>
                     </div>
                   </Form>
-                  <div>
-                      New User?<NavLink to={`/jobseeker/registration`}>SignUp</NavLink>
-                  </div>
                 </div>
               </div>
             </Card.Body>

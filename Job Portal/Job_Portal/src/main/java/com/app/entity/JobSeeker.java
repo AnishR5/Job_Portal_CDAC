@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,8 +37,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Setter
 @JsonIgnoreProperties
+@JsonIgnoreType
 @Table(name = "jobseeker")
-public class JobSeeker {
+public class JobSeeker implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

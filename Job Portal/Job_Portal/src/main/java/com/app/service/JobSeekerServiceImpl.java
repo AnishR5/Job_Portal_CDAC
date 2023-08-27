@@ -1,14 +1,19 @@
 package com.app.service;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.InsertJobseekerDto;
@@ -32,10 +37,8 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	private ModelMapper mapper;
 
 	@Override
-	public String insertJobSeeker(InsertJobseekerDto dto) {
-		// InsertJobseekerDto dto1=new InsertJobseekerDto("abc", "ssd", "rt",
-		// "ani@gmmail.com", "werty", "234567", Gender.MALE, "wert", "sfrdt", "iji",
-		// "uihi", 2);
+	public String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request) {
+		
 		System.out.println(dto);
 
 		JobSeeker js = mapper.map(dto, JobSeeker.class);
@@ -43,6 +46,14 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 		try {
 			System.out.println(js);
 			jsRepo.save(js);
+			 if (resume != null && !resume.isEmpty()) {
+				 Blob resumeBlob = new SerialBlob(resume.getBytes());
+
+		            // Set the resume field as a Blob in the entity
+		            js.setResume(resumeBlob);
+		            
+		        }
+			 jsRepo.save(js); // Update the entity to associate the resume
 
 		} catch (Exception e) {
 			return "Fail";
@@ -77,9 +88,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	public boolean signIn(Signindto dto,HttpServletRequest request) {
 		try {
 			JobSeeker js=jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
-			System.out.println(js);
+			//System.out.println(js);
 			HttpSession session=request.getSession();
-			session.setAttribute("jobseeker", js);
+			
+			session.setAttribute("jsID", js.getJsId());
+			session.setAttribute("jsName", js.getUserName());
 		}catch (Exception e) {
 			return false;
 		}

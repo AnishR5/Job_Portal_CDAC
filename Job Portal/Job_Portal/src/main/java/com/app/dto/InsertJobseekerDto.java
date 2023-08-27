@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.app.entity.Gender;
 
 import lombok.Getter;
@@ -31,4 +33,5 @@ public class InsertJobseekerDto {
 	
 	private String skill3;
 	private int experience;
+	private MultipartFile resume;
 }

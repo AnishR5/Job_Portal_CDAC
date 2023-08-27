@@ -19,6 +19,7 @@ export default function NavBar() {
             >
               <NavDropdown.Item href="/jobprovider/signin">Job Provider</NavDropdown.Item>
               <NavDropdown.Item href="/jobseeker/signin">Job Seeker</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/signin">Admin</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
