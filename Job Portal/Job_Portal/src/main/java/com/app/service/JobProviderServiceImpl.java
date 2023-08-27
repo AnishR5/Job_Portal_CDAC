@@ -51,13 +51,14 @@ public class JobProviderServiceImpl implements JobProviderService {
 	}
 
 	@Override
-	public String signIn(Signindto dto) {
+	public JobProvider signIn(Signindto dto) {
 		try {
 		JobProvider jp=jpRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("invalid credentials"));
+		return jp;
 		}catch (Exception e) {
-			return "Login Failed";
+			return null;
 		}
-		return "Login Success";
+		
 	}
 	
 

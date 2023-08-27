@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import JSNavBar from './JSNavBar';
 
 
 export default function JobList() {
@@ -45,6 +46,8 @@ export default function JobList() {
   };
 
   return (
+    <div>
+      <JSNavBar></JSNavBar>
     <Table striped bordered hover variant="dark">
       <thead>
         <tr>
@@ -90,5 +93,6 @@ export default function JobList() {
         ))}
       </tbody>
     </Table>
+    </div>
   );
 }

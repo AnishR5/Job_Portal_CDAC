@@ -14,13 +14,14 @@ import com.app.entity.JobSeeker;
 
 public interface JobSeekerService {
 	
-	String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request);
+//	String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request);
+	String insertJobSeeker(InsertJobseekerDto dto);
 
 	List<JobSeeker> getAllSeekerList();
 
 	JobSeeker getJobSeekerById(long jsid);
 	
-	boolean signIn(Signindto dto, HttpServletRequest request);
+	JobSeeker signIn(Signindto dto);
 
 	String deleteJsById(long jsId);
 
