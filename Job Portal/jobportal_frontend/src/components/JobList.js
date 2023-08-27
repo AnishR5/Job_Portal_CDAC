@@ -34,7 +34,9 @@ export default function JobList() {
   
     try {
       const response = await axios.post(
-        `http://localhost:7070/job/application/apply/${jobId}`, // Update the URL with the job ID
+        `http://localhost:7070/application/apply/${jobId}`, {
+            body: JSON.stringify({userName: userName})
+          }// Update the URL with the job ID
        
       );
       console.log("Job application response:", response.data);
@@ -81,14 +83,15 @@ export default function JobList() {
             {/* <td><form action='/application/apply'><Button variant="success" type="submit" onClick={() => handleJobApplication(job.jobId)}>Apply</Button></form></td>   */}
             
             {/* Changes */}
-            <td><form action='/application/apply'>
+            <td>
+
             {currentDate >new Date(job.applicationDeadline)?
             (<Button variant="success" disabled>Application Closed</Button>)  :
             userLoggedIn ? 
             (!job.isApplied ? <Button variant="success" type="submit" 
             onClick={() => {handleJobApplication(job.jobId); setButtonClicked(true);} }
             disabled={buttonClicked}>Apply</Button>:<Button variant="success" disabled>Applied</Button>)
-            :(<Button variant="success" disabled>Login To Apply</Button>)}</form></td>  
+            :(<Button variant="success" disabled>Login To Apply</Button>)}</td>  
           </tr>
         ))}
       </tbody>

@@ -11,5 +11,5 @@ import com.app.entity.JobSeeker;
 public interface JobSeekerRepo extends JpaRepository<JobSeeker, Long> {
 	
 	Optional<JobSeeker> findByUserNameAndPassword(String userName,String password);
-
+	Optional<JobSeeker> findByUserName(String userName);
 }

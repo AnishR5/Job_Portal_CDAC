@@ -12,8 +12,6 @@ import lombok.ToString;
 @ToString
 public class ApplicationSubmitdto {
 	
-	private Long jobId;
-	private Long jsId;
-	private JobStatus status;
+	private String userName;
 
 }

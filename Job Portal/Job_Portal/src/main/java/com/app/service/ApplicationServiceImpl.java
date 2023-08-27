@@ -12,6 +12,7 @@ import com.app.entity.JobSeeker;
 import com.app.entity.JobStatus;
 import com.app.repository.ApplicationRepo;
 import com.app.repository.JobRepo;
+import com.app.repository.JobSeekerRepo;
 
 @Service
 @Transactional
@@ -29,6 +30,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private JobRepo jobRepo;
 	@Autowired
 	private JobSeekerService jsService;
+	@Autowired
+	private JobSeekerRepo jobSeekerRepo;
 
 	/*
 	 * @Override public String insertApplication(ApplicationSubmitdto dto) {
@@ -50,7 +53,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 			System.out.println(dto);
 			Application appl=mapper.map(dto, Application.class);
 			System.out.println(appl);
-			JobSeeker js=jsService.getJobSeekerById(1);	
+			//JobSeeker js=jsService.getJobSeekerById(1);	
+			JobSeeker js=jobSeekerRepo.findByUserName(dto.getUserName()).get();
 			System.out.println(js);
 			Job job=jobRepo.findById(jobId).get();		
 			System.out.println(job);
