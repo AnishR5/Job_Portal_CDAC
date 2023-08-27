@@ -3,8 +3,8 @@ package com.app.service;
 import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.modelmapper.ModelMapper;
@@ -60,41 +60,15 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 //		return "Success";
 //	}
 	
+	
+
 	@Override
-<<<<<<< HEAD
-	public String insertJobSeeker(InsertJobseekerDto dto, MultipartFile resume, MultipartHttpServletRequest request) {
-
-=======
 	public String insertJobSeeker(InsertJobseekerDto dto) {
-		
->>>>>>> 20e9e5c759f87cb49604a1e0f3c458d98cc6da22
 		System.out.println(dto);
-
 		JobSeeker js = mapper.map(dto, JobSeeker.class);
-
 		try {
 			System.out.println(js);
 			jsRepo.save(js);
-<<<<<<< HEAD
-			if (resume != null && !resume.isEmpty()) {
-				Blob resumeBlob = new SerialBlob(resume.getBytes());
-
-				// Set the resume field as a Blob in the entity
-				js.setResume(resumeBlob);
-
-			}
-			jsRepo.save(js); // Update the entity to associate the resume
-=======
-//			 if (resume != null && !resume.isEmpty()) {
-//				 Blob resumeBlob = new SerialBlob(resume.getBytes());
-//
-//		            // Set the resume field as a Blob in the entity
-//		            js.setResume(resumeBlob);
-//		            
-//		        }
-//			 jsRepo.save(js); // Update the entity to associate the resume
->>>>>>> 20e9e5c759f87cb49604a1e0f3c458d98cc6da22
-
 		} catch (Exception e) {
 			return "Fail";
 		}
@@ -124,19 +98,18 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public boolean signIn(Signindto dto, HttpServletRequest request) {
-		try {
-			JobSeeker js = jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword())
-					.orElseThrow(() -> new ResourceNotFoundException("Invalid credetials"));
-			// System.out.println(js);
-			HttpSession session = request.getSession();
+//	public boolean signIn(Signindto dto, HttpServletRequest request) {
+//		try {
+//			JobSeeker js = jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword())
+//					.orElseThrow(() -> new ResourceNotFoundException("Invalid credetials"));
+//			// System.out.println(js);
+//			HttpSession session = request.getSession();
+//
+//			session.setAttribute("jsID", js.getJsId());
+//			session.setAttribute("jsName", js.getUserName());
+//		} catch (Exception e) {
+//			return false;
 
-			session.setAttribute("jsID", js.getJsId());
-			session.setAttribute("jsName", js.getUserName());
-		} catch (Exception e) {
-			return false;
-=======
 	public JobSeeker signIn(Signindto dto) {
 		try {
 			JobSeeker js=jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
@@ -144,7 +117,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 			return js;
 		}catch (Exception e) {
 			return null;
->>>>>>> 20e9e5c759f87cb49604a1e0f3c458d98cc6da22
+
 		}
 		
 	}
