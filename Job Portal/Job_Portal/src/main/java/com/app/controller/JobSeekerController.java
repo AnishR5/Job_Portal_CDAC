@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.JSInfo;
+import com.app.dto.JSUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 import com.app.service.JobSeekerService;
@@ -88,5 +90,12 @@ public class JobSeekerController {
 	public void SignOut(HttpServletRequest request)
 	{
 		request.getSession().invalidate();
+	}
+	
+	@PutMapping("/{jsId}")
+	public String updateJS(@PathVariable long jsId,@RequestBody JSUpdateDto updateDto)
+	{
+		String result = jobSeekerService.updateJSById(jsId,updateDto);
+		return result;
 	}
 }

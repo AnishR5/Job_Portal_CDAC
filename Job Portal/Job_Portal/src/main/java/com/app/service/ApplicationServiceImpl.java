@@ -9,6 +9,7 @@ import com.app.dto.ApplicationSubmitdto;
 import com.app.entity.Application;
 import com.app.entity.Job;
 import com.app.entity.JobSeeker;
+import com.app.entity.JobStatus;
 import com.app.repository.ApplicationRepo;
 import com.app.repository.JobRepo;
 
@@ -29,22 +30,34 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private JobSeekerService jsService;
 
+	/*
+	 * @Override public String insertApplication(ApplicationSubmitdto dto) {
+	 * 
+	 * try { System.out.println(dto); Application appl=mapper.map(dto,
+	 * Application.class); System.out.println(appl); JobSeeker
+	 * js=jsService.getJobSeekerById(dto.getJsId()); System.out.println(js); Job
+	 * job=jobRepo.findById(dto.getJobId()).get(); System.out.println(job);
+	 * appl.setAssignedJobId(job); appl.setAssignedJsId(js);
+	 * System.out.println(appl); js.addApplication(appl); job.addApplication(appl);
+	 * applRepo.save(appl); }catch (Exception e) { return "Failed"; } return
+	 * "Success"; }
+	 */
+	
 	@Override
-	public String insertApplication(ApplicationSubmitdto dto) {
+	public String insertApplication(ApplicationSubmitdto dto, long jobId) {
 		
 		try {
 			System.out.println(dto);
 			Application appl=mapper.map(dto, Application.class);
 			System.out.println(appl);
-			JobSeeker js=jsService.getJobSeekerById(dto.getJsId());	
+			JobSeeker js=jsService.getJobSeekerById(1);	
 			System.out.println(js);
-			Job job=jobRepo.findById(dto.getJobId()).get();		
+			Job job=jobRepo.findById(jobId).get();		
 			System.out.println(job);
 			appl.setAssignedJobId(job);
 			appl.setAssignedJsId(js);
+			appl.setStatus(JobStatus.APPLIED);
 			System.out.println(appl);
-			js.addApplication(appl);
-			job.addApplication(appl);
 			applRepo.save(appl);
 		}catch (Exception e) {
 			return "Failed";
