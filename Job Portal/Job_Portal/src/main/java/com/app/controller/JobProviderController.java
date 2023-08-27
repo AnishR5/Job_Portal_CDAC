@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.JPRegisterdto;
+import com.app.dto.JPUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobProvider;
 import com.app.service.JobProviderService;
@@ -53,6 +54,19 @@ public class JobProviderController {
 	public JobProvider getById(@PathVariable Long jpid)
 	{
 		return jpService.getJPbyID(jpid);
+	}
+	
+	@GetMapping("/getJPDetails/{userName}")
+	public JobProvider getByUserName(@PathVariable String userName)
+	{
+		return jpService.getJPbyUserName(userName);
+	}
+	
+	@PostMapping("/updateJP/{userName}")
+	public String updateJP(@PathVariable String userName, @RequestBody JPUpdateDto jpUpdateDto)
+	{
+		String result = jpService.updateJPDetails(userName,jpUpdateDto);
+		return result;
 	}
 
 }

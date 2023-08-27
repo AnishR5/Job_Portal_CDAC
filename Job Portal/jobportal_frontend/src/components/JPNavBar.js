@@ -12,6 +12,7 @@ export default function JPNavBar() {
           <Nav className="me-auto">
             <Nav.Link href="/jobprovider/home">Home</Nav.Link>
             <Nav.Link href="/jobprovider/insertjob">Post Job</Nav.Link>
+            <Nav.Link href='/jobprovider/update'>Update</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/logout">SignOut</Nav.Link>

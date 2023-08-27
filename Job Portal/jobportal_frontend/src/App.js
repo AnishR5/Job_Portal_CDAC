@@ -15,6 +15,7 @@ import LoginAdmin from './components/LoginAdmin';
 import AdminHome from './components/AdminHome';
 import Logout from './components/Logout';
 import JSUpdate from './components/JSUpdate';
+import JPUpdate from './components/JPUpdate';
 function App() {
   return (
     <div className="App">
@@ -30,6 +31,7 @@ function App() {
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
         <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>
         <Route path='/jobprovider/home' element={<JPHome></JPHome>}></Route>
+        <Route path='/jobprovider/update' element={<JPUpdate></JPUpdate>}></Route>
         <Route path='/jobprovider/signin'element={<LoginJP/>}></Route>
         <Route path='/admin/signin' element={<LoginAdmin></LoginAdmin>}></Route>
         <Route path='/admin/home' element={<AdminHome></AdminHome>}></Route>

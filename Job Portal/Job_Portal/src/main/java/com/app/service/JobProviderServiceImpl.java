@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.customexception.ResourceNotFoundException;
 import com.app.dto.JPRegisterdto;
+import com.app.dto.JPUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobProvider;
 import com.app.repository.JobProviderRepo;
@@ -49,6 +51,12 @@ public class JobProviderServiceImpl implements JobProviderService {
 		
 		return jpRepo.findById(jpid).orElseThrow(()-> new ResourceNotFoundException("Cannot find id"));
 	}
+	
+	@Override
+	public JobProvider getJPbyUserName(String userName) {
+		
+		return jpRepo.findByUserName(userName).orElseThrow(()-> new ResourceNotFoundException("Cannot find userName"));
+	}
 
 	@Override
 	public JobProvider signIn(Signindto dto) {
@@ -60,6 +68,27 @@ public class JobProviderServiceImpl implements JobProviderService {
 		}
 		
 	}
+
+	@Override
+	public String updateJPDetails(String userName, JPUpdateDto jpUpdateDto) {
+		Optional<JobProvider> existingName = jpRepo.findByUserName(userName);
+		if(existingName.isPresent())
+		{
+			JobProvider existingJP = existingName.get();
+			existingJP.setJpName(jpUpdateDto.getJpName());
+			existingJP.setEmail(jpUpdateDto.getEmail());
+			existingJP.setAddress(jpUpdateDto.getAddress());
+			existingJP.setPhoneNo(jpUpdateDto.getPhoneNo());
+			existingJP.setWebSite(jpUpdateDto.getWebSite());
+			jpRepo.save(existingJP);
+			return "Updated Successfully";
+		}else {
+			return "Name Does Not Exist";
+		}
+		
+	}
+
+	
 	
 
 }

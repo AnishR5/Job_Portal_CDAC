@@ -7,6 +7,7 @@ import JSNavBar from './JSNavBar';
 
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
+  const [buttonClicked,setButtonClicked] =useState(false);
   const currentDate = new Date();
 
   let userName = localStorage.getItem('userName');
@@ -26,28 +27,27 @@ export default function JobList() {
   }, []);
 
   const handleJobApplication = async (jobId) => {
-    if (!jobId) {
-      console.log("Please select a job to apply for.");
-      return;
-    }
+    if (jobId) {
   
-    try {
-      const response = await axios.post(
-        `http://localhost:7070/application/apply/${jobId}`, {
-            userName: userName
+      try {
+        const response = await axios.post(
+          `http://localhost:7070/application/apply/${jobId}`, {
+              userName: userName
+          }
+            // Update the URL with the job ID
+        
+        );
+        console.log("Job application response:", response.data);
+        if(response.data === 'Success'){
+          alert("Applied for Job Successfully");
+        } else {
+          alert("Application failed");
         }
-          // Update the URL with the job ID
-      );
-      console.log("Job application response:", response.data);
-      if(response.data === 'Success'){
-        alert("Applied for Job Successfully");
-      } else {
-        alert("Application failed");
+        // Handle the response or show a success message
+      } catch (error) {
+        console.error("Job application error:", error);
+        // Handle the error
       }
-      // Handle the response or show a success message
-    } catch (error) {
-      console.error("Job application error:", error);
-      // Handle the error
     }
   };
 
@@ -87,16 +87,14 @@ export default function JobList() {
             {/* <td><form action='/application/apply'><Button variant="success" type="submit" onClick={() => handleJobApplication(job.jobId)}>Apply</Button></form></td>   */}
             
             {/* Changes */}
-            <td>
-
+            <td><form action='/application/apply'>
             {currentDate >new Date(job.applicationDeadline)?
             (<Button variant="success" disabled>Application Closed</Button>)  :
             userLoggedIn ? 
             (!job.isApplied ? <Button variant="success" type="submit" id={job.jobId}
-            onClick={() => {handleJobApplication(job.jobId);} }>
-              Apply</Button>:<Button variant="success" disabled>Applied</Button>)
-            :(<Button variant="success" disabled>Login To Apply</Button>)}
-            </td>  
+            onClick={() => {handleJobApplication(job.jobId); setButtonClicked(true);} }
+            >Apply</Button>:<Button variant="success" disabled>Applied</Button>)
+            :(<Button variant="success" disabled>Login To Apply</Button>)}</form></td>  
           </tr>
         ))}
       </tbody>

@@ -9,7 +9,8 @@ import com.app.entity.JobProvider;
 
 @Repository
 public interface JobProviderRepo extends JpaRepository<JobProvider, Long> {
-	
-	Optional<JobProvider> findByUserNameAndPassword(String userName,String password);
 
+	Optional<JobProvider> findByUserNameAndPassword(String userName, String password);
+
+	Optional<JobProvider> findByUserName(String userName);
 }
