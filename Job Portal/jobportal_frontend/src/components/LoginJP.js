@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,NavLink } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 export default function LoginJP() {
     const navigate=useNavigate()
@@ -18,20 +19,21 @@ export default function LoginJP() {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-    
+      
         try {
           const response = await axios.post("http://localhost:7070/jobprovider/signin", formData);
-          console.log('Registration response:', response.data);
+          console.log('Sign-in response:', response.data);
           
-          navigate('/job/jobs');
+          navigate('/jobprovider/home')
         } catch (error) {
-          console.error('Registration error:', error);
-          // Handle error
+          console.error('Sign-in error:', error);
+          // Handle sign-in error
         }
       };
 
   return (
     <div>
+      <NavBar></NavBar>
         <Container>
       
       <Row className="vh-100 d-flex justify-content-center align-items-center">
@@ -45,7 +47,7 @@ export default function LoginJP() {
                   <Form action='/jobprovider/signin' method='post'> 
                     <Form.Group className="mb-3" controlId="Name">
                       <Form.Label className="text-center">
-                        Job Provider Id
+                      UserName
                       </Form.Label>
                       <Form.Control  type="text"                          
                           name="userName"
@@ -67,7 +69,9 @@ export default function LoginJP() {
                       </Button>
                     </div>
                   </Form>
-                  
+                  <div>
+                      New User?<NavLink to={`/jobprovider/registration`}>SignUp</NavLink>
+                  </div>
                 </div>
               </div>
             </Card.Body>

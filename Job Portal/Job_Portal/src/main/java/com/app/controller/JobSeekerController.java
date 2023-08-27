@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.app.dto.InsertJobseekerDto;
 import com.app.dto.Signindto;
@@ -24,6 +25,7 @@ import com.app.service.JobSeekerService;
 
 @RestController
 @RequestMapping("/jobseeker")
+@SessionAttributes("jobseeker")
 @CrossOrigin(origins = "http://localhost:3000")
 public class JobSeekerController {
 	
@@ -43,9 +45,9 @@ public class JobSeekerController {
 	}
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto,HttpSession session,HttpServletRequest request)
+	public ResponseEntity<?> JSSignin(@RequestBody Signindto dto,HttpServletRequest request)
 	{
-		boolean res=jobSeekerService.signIn(dto,session,request);
+		boolean res=jobSeekerService.signIn(dto,request);
 		return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
 	

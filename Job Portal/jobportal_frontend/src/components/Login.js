@@ -1,53 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { NavLink, useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 export default function Login() {
-  const [userType, setUserType] = useState('jobseeker'); // Default user type
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate=useNavigate()
+    const [formData,setFormData]=useState(
+            {
+                userName: "",
+                password: ""
+              }
+    )
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+      };
 
-  const url = "http://localhost:7070/jobseeker/signin";
-
-  const login = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const userName = formData.get('uname');
-    const password = formData.get('pass');
-
-    try {
-      const response = await axios.post(url, {
-        userName: userName,
-        password: password
-      });
-      console.log(response);
-
-      // Redirect to /jobseeker/welcome after successful login
-      navigate('/jobseeker/welcome');
-    } catch (error) {
-      console.error(error);
-      // Handle error
-    }
-  };
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const response = await axios.post("http://localhost:7070/jobseeker/signin", formData);
+          console.log('Registration response:', response.data);
+          
+          navigate('/job/jobs');
+        } catch (error) {
+          console.error('Registration error:', error);
+          // Handle error
+        }
+      };
 
   return (
-    <div className="form">
-      <form onSubmit={login}>
-        <div className="input-container">
-          <label>Username</label>
-          <input type="text" name="uname" required />
-        </div>
-        <div className="input-container">
-          <label>Password</label>
-          <input type="password" name="pass" required />
-        </div>
-        <div className="button-container">
-          <button type="submit">Login</button>
-        </div>
-        <div>
-          New User?<NavLink to={`/${userType}/registration`}>SignUp</NavLink>
-        </div>
-      </form>
+    <div>
+      <NavBar></NavBar>
+        <Container>
+      
+      <Row className="vh-100 d-flex justify-content-center align-items-center">
+        <Col md={8} lg={6} xs={12}>
+        <div className="border border-2 border-primary"></div>
+          <Card className="shadow px-4">
+            <Card.Body>
+              <div className="mb-3 mt-md-4">
+                <h2 className="fw-bold mb-2 text-center text-uppercase ">Login</h2>
+                <div className="mb-3">
+                  <Form action='/jobprovider/signin' method='post'> 
+                    <Form.Group className="mb-3" controlId="Name">
+                      <Form.Label className="text-center">
+                        UserName
+                      </Form.Label>
+                      <Form.Control  type="text"                          
+                          name="userName"
+                          value={formData.userName}
+                          onChange={handleChange} />
+                    </Form.Group>                    
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label className="text-center">
+                      Password
+                      </Form.Label>
+                      <Form.Control  type="password"                         
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange} />
+                    </Form.Group>                    
+                    <div className="d-grid">
+                      <Button variant="primary" type="submit" onClick={handleSubmit}>
+                        Login
+                      </Button>
+                    </div>
+                  </Form>
+                  
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
     </div>
-  );
+  )
 }

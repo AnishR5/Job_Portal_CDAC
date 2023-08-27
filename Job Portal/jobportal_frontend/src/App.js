@@ -1,7 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes,Route,Navigate } from 'react-router-dom';
-import NavBar from './components/NavBar';
 import HomeComponent from './components/HomeComponent';
 import Login from './components/Login';
 import Registration from './components/Registration';
@@ -10,12 +9,12 @@ import JobList from './components/JobList';
 import RegisterJobProvider from './components/RegisterJobProvider';
 import PostJob from './components/PostJob';
 import LoginJP from './components/LoginJP';
+import JPHome from './components/JPHome';
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
       <Routes>
         <Route path='/' element={<Navigate replace to="/home"></Navigate>}></Route>
         <Route path='/home' element={<HomeComponent/>}></Route>
@@ -26,6 +25,7 @@ function App() {
         <Route path='/job/jobs' element={<JobList/>}></Route>
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
         <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>
+        <Route path='/jobprovider/home' element={<JPHome></JPHome>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
     </div>

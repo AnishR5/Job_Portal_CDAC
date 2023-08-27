@@ -3,6 +3,7 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
+import JPNavBar from './JPNavBar';
 
 export default function PostJob() {
     const navigate=useNavigate();
@@ -60,6 +61,7 @@ export default function PostJob() {
 
   return (
     <div> 
+      <JPNavBar></JPNavBar>
         <Container>
       
       <Row className="vh-100 d-flex justify-content-center align-items-center">

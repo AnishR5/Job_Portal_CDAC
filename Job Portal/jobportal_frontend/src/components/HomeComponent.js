@@ -1,7 +1,11 @@
 import React from 'react'
+import NavBar from './NavBar'
+
 
 export default function HomeComponent() {
   return (
-    <div>Job Portal</div>
+    <div>
+     <NavBar></NavBar>
+      Job Portal</div>
   )
 }

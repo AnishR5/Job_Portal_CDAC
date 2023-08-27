@@ -3,6 +3,7 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { NavLink,Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 
 export default function RegisterJobProvider() {
@@ -38,6 +39,7 @@ export default function RegisterJobProvider() {
 
   return (
     <div>
+      <NavBar></NavBar>
     <Container>      
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
@@ -135,7 +137,7 @@ export default function RegisterJobProvider() {
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                      Already have an account??{" "}
+                      Already have an account?{" "}
                       <NavLink to={`/jobprovider/signin`} >SignIn</NavLink>
                         {/* <a href="{''}" className="text-primary fw-bold">
                           Sign In
