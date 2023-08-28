@@ -26,24 +26,27 @@ export default function Registration() {
   const [successMessage, setSuccessMessage] = useState('');
   const url = "http://localhost:7070/jobseeker/registration"; 
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({ ...prevData, resume: file }));
-  };
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFormData((prevData) => ({ ...prevData, resume: file }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataToSend = new FormData();
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
-    }
+    // const formDataToSend = new FormData();
+    // for (const key in formData) {
+    //   formDataToSend.append(key, formData[key]);
+    // }
 
     try {
-      formDataToSend.append('resume', formData.resume);
-      const response = await axios.post(url, formDataToSend, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+     // formDataToSend.append('resume', formData.resume);
+      const response = await axios.post(url
+        //, formDataToSend
+      //   , {
+      //   headers: { 'Content-Type': 'multipart/form-data' }
+      // }
+      );
       console.log('Registration response:', response.data);
       
       navigate('/jobseeker/signin');
@@ -237,7 +240,7 @@ export default function Registration() {
                         controlId="formBasicCheckbox"
                       >
                       </Form.Group>
-                      <Form.Group className="mb-3" controlId="resume">
+                      {/* <Form.Group className="mb-3" controlId="resume">
                           <Form.Label>Upload Resume (PDF)</Form.Label>
                           <Form.Control
                             type="file"
@@ -245,7 +248,7 @@ export default function Registration() {
                             name="resume"
                             onChange={handleFileChange}
                           />
-                      </Form.Group>
+                      </Form.Group> */}
                       <div className="d-grid">
                         <Button variant="primary" type="submit" onClick={handleSubmit}>
                           Create Account

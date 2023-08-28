@@ -87,14 +87,14 @@ export default function JobList() {
             {/* <td><form action='/application/apply'><Button variant="success" type="submit" onClick={() => handleJobApplication(job.jobId)}>Apply</Button></form></td>   */}
             
             {/* Changes */}
-            <td><form action='/application/apply'>
+            <td>
             {currentDate >new Date(job.applicationDeadline)?
             (<Button variant="success" disabled>Application Closed</Button>)  :
             userLoggedIn ? 
             (!job.isApplied ? <Button variant="success" type="submit" id={job.jobId}
             onClick={() => {handleJobApplication(job.jobId); setButtonClicked(true);} }
             >Apply</Button>:<Button variant="success" disabled>Applied</Button>)
-            :(<Button variant="success" disabled>Login To Apply</Button>)}</form></td>  
+            :(<Button variant="success" disabled>Login To Apply</Button>)}</td>  
           </tr>
         ))}
       </tbody>

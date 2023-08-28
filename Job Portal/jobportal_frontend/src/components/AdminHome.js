@@ -7,7 +7,7 @@ export default function AdminHome() {
     const [jobProviders, setJobProviders] = useState([]);
   const [jobSeekers, setJobSeekers] = useState([]);
   const [jobs, setJobs] = useState([]);
-
+  let userName = localStorage.getItem('userName');
   useEffect(() => {
     // Fetch job providers list
     axios.get('http://localhost:7070/jobprovider/providerlist')
@@ -27,7 +27,7 @@ export default function AdminHome() {
         console.error('Error fetching job seekers:', error);
       });
 
-      axios.get('http://localhost:7070/job/jobs')
+      axios.get(`http://localhost:7070/job/jobs/${userName}`)
       .then(response => {
         setJobs(response.data);
       })
