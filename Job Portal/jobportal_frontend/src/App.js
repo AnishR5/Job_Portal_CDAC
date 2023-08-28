@@ -16,6 +16,7 @@ import AdminHome from './components/AdminHome';
 import Logout from './components/Logout';
 import JSUpdate from './components/JSUpdate';
 import JPUpdate from './components/JPUpdate';
+import AppliedListJS from './components/JPUpdate';
 import Footer from './components/Footer';
 import RegistrationAdmin from './components/RegistrationAdmin';
 import JobListJp from './components/JobListJp';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
         <Route path='/jobseeker/home' element={<JSHome></JSHome>}></Route>
         <Route path='/jobseeker/update' element={<JSUpdate />}></Route>
+        {/* <Route path='/jobseeker/appliedlist' element={<AppliedListJS></AppliedListJS>}></Route> */}
         <Route path='/job/jobs' element={<JobList/>}></Route>
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
         <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>
