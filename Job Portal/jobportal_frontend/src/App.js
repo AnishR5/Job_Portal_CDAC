@@ -17,6 +17,7 @@ import Logout from './components/Logout';
 import JSUpdate from './components/JSUpdate';
 import JPUpdate from './components/JPUpdate';
 import Footer from './components/Footer';
+import RegistrationAdmin from './components/RegistrationAdmin';
 function App() {
   return (
     <div className="App">
@@ -37,6 +38,7 @@ function App() {
         <Route path='/admin/signin' element={<LoginAdmin></LoginAdmin>}></Route>
         <Route path='/admin/home' element={<AdminHome></AdminHome>}></Route>
         <Route path='/logout' element={<Logout/>}></Route>
+        <Route path='/admin/registration' element={<RegistrationAdmin/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
       <Footer/>

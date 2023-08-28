@@ -1,5 +1,8 @@
 package com.app.controller;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +37,9 @@ public class AdminController {
 	}
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> signIn(@RequestBody Signindto dto)
+	public ResponseEntity<?> signIn(@RequestBody Signindto dto,HttpServletResponse response,HttpSession session)
 	{
-		return ResponseEntity.ok(adminService.signIn(dto));
+		return ResponseEntity.ok(adminService.signIn(dto,response,session));
 	}
 
 }

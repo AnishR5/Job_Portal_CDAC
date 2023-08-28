@@ -2,6 +2,8 @@ package com.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +29,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private JobRepo jobRepo;
 	@Autowired
 	private JobSeekerRepo jobSeekerRepo;
+	@Autowired
+	private JavaMailSender sender;
+	
+//	@Autowired
+//	private EmailService emailService;
 	/*
 	 * @Override public String insertApplication(ApplicationSubmitdto dto) {
 	 * 
@@ -52,8 +59,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 			appl.setAssignedJobId(job);
 			appl.setAssignedJsId(jobSeeker);
 			appl.setStatus(JobStatus.APPLIED);
-			System.out.println(appl);
+			//jobSeeker.addApplication(appl);
+			SimpleMailMessage mgs=new SimpleMailMessage();
+			mgs.setTo(jobSeeker.getEmail());
+			mgs.setSubject("Application to job");
+			mgs.setText("Dear " + jobSeeker.getJsFullName() + ",\n\n"
+	                + "Your application for the job " + job.getJobTitle() + " has been successfully submitted."
+	                + "\n\nBest regards,\nThe Application Team");
+			sender.send(mgs);
 			applRepo.save(appl);
+			
 		}catch (Exception e) {
 			return "Failed";
 		}

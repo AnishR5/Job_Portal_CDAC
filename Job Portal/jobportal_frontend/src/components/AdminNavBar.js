@@ -11,6 +11,7 @@ export default function AdminNavBar() {
         <Navbar.Brand href="/">Job Portal</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/admin/home">Home</Nav.Link>
+          <Nav.Link href="/admin/registration">Register Another Admin</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
           <Nav.Link href="/logout">SignOut</Nav.Link>

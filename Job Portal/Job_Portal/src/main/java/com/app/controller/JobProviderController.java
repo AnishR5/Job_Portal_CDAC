@@ -2,6 +2,9 @@ package com.app.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +43,9 @@ public class JobProviderController {
 	}
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> JpSignin(@RequestBody Signindto dto)
+	public ResponseEntity<?> JpSignin(@RequestBody Signindto dto,HttpServletResponse response,HttpSession session)
 	{
-		return ResponseEntity.status(HttpStatus.OK).body(jpService.signIn(dto));
+		return ResponseEntity.status(HttpStatus.OK).body(jpService.signIn(dto,response,session));
 	}
 	
 	@GetMapping("/providerlist")

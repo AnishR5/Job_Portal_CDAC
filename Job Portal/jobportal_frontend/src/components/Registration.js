@@ -20,10 +20,10 @@ export default function Registration() {
     skill2: '',
     skill3: '',
     experience: 0,
-    resume: null
+    // resume: null
   });
 
-  const [successMessage, setSuccessMessage] = useState('');
+  
   const url = "http://localhost:7070/jobseeker/registration"; 
 
   // const handleFileChange = (e) => {
@@ -41,7 +41,7 @@ export default function Registration() {
 
     try {
      // formDataToSend.append('resume', formData.resume);
-      const response = await axios.post(url
+      const response = await axios.post(url,formData
         //, formDataToSend
       //   , {
       //   headers: { 'Content-Type': 'multipart/form-data' }
@@ -239,7 +239,14 @@ export default function Registration() {
                         className="mb-3"
                         controlId="formBasicCheckbox"
                       >
+                         <Form.Label>Experience</Form.Label>
+                        <Form.Control type="text" placeholder="Experience" 
+                           name="experience"
+                           value={formData.experience}
+                           onChange={handleChange}
+                        />
                       </Form.Group>
+                     
                       {/* <Form.Group className="mb-3" controlId="resume">
                           <Form.Label>Upload Resume (PDF)</Form.Label>
                           <Form.Control

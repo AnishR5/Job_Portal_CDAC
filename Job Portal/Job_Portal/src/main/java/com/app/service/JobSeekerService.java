@@ -3,6 +3,8 @@ package com.app.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -21,7 +23,7 @@ public interface JobSeekerService {
 
 	JobSeeker getJobSeekerById(long jsid);
 	
-	JobSeeker signIn(Signindto dto);
+	JobSeeker signIn(Signindto dto,HttpServletResponse response,HttpSession session);
 
 	String deleteJsById(long jsId);
 

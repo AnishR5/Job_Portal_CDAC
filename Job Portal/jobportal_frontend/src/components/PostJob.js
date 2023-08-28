@@ -6,12 +6,14 @@ import axios from 'axios';
 import JPNavBar from './JPNavBar';
 
 export default function PostJob() {
+    let userName = localStorage.getItem('userName');
     const navigate=useNavigate();
+    const [jobProvider,setJobProvider]=useState([])
     const [category, setcategory] = useState([]);
     const [location, setlocation] = useState([]);
     const [formData, setFormData] = useState(
         {
-            assignedJpId: 0,
+            assignedJpId: `${jobProvider.jpId}`,
             assignedJcId: 0,
             assignedLocationId:0 ,
             jobTitle: "",
@@ -38,6 +40,14 @@ export default function PostJob() {
             })
             .catch(error => {
                 console.error(error);})
+
+            axios.get(`http://localhost:7070/getJPDetails/${userName}`)
+            .then(response =>{
+              console.log(response.data)
+              setJobProvider(response.data)
+            })
+            .catch(error => {
+              console.error(error);})
     },[])
 
     const handleSubmit = async (e) => {

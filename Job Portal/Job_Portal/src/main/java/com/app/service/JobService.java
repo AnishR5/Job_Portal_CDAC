@@ -10,6 +10,8 @@ public interface JobService {
 	String insertJob(JobDto dto);
 	
 	List<Job> listAllJobs(String userName);
+	
+	List<Job> listJobs();
 
 	
 }

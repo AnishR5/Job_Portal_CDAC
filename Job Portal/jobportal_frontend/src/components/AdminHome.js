@@ -27,7 +27,7 @@ export default function AdminHome() {
         console.error('Error fetching job seekers:', error);
       });
 
-      axios.get(`http://localhost:7070/job/jobs/${userName}`)
+      axios.get(`http://localhost:7070/job/jobs`)
       .then(response => {
         setJobs(response.data);
       })

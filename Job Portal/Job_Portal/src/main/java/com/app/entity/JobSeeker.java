@@ -48,7 +48,7 @@ public class JobSeeker implements Serializable {
 	private String jsFullName;
 	@Column(length = 40, nullable = false, unique = true)
 	private String userName;
-	@Column(length = 40, nullable = false)
+	@Column( nullable = false)
 	private String password;
 	@Email
 	@Column(unique = true, length = 100)

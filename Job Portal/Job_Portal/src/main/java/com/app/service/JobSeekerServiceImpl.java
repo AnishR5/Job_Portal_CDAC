@@ -3,8 +3,12 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +18,8 @@ import com.app.dto.JSUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
 import com.app.repository.JobSeekerRepo;
+import com.app.util.JwtUtil;
+import com.app.util.SaveCookie;
 
 @Service
 @Transactional
@@ -28,6 +34,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private JwtUtil jwtUtil;
 
 //	@Override
 //	public String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request) {
@@ -58,8 +67,12 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
 	@Override
 	public String insertJobSeeker(InsertJobseekerDto dto) {
+		BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
 		System.out.println(dto);
 		JobSeeker js = mapper.map(dto, JobSeeker.class);
+		String encryptedPassword=bcrypt.encode(js.getPassword());
+		System.out.println(encryptedPassword);
+		js.setPassword(encryptedPassword);
 		try {
 			System.out.println(js);
 			jsRepo.save(js);
@@ -110,11 +123,20 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 //		} catch (Exception e) {
 //			return false;
 
-	public JobSeeker signIn(Signindto dto) {
+	public JobSeeker signIn(Signindto dto,HttpServletResponse response,HttpSession session) {
 		try {
 			JobSeeker js=jsRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("Invalid credetials"));
 			//System.out.println(js);
+			BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+			if(bcrypt.matches(dto.getPassword(), js.getPassword()))
+			{
+				final String jwt=jwtUtil.generateToken(js.getUserName());
+				session.setAttribute("js", js);
+				SaveCookie.sendToken(jwt, response);
+				
+			}
 			return js;
+			
 		}catch (Exception e) {
 			return null;
 

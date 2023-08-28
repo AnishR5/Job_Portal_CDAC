@@ -38,4 +38,10 @@ public class JobController {
 	{
 		return jobService.listAllJobs(userName);
 	}
+	
+	@GetMapping("/jobs")
+	public List<Job> getJobs()
+	{
+		return jobService.listJobs();
+	}
 }

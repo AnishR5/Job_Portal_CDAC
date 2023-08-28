@@ -32,7 +32,7 @@ Admin {
 	private Long adminId;
 	@Column(length = 50, nullable = false, unique = true)
 	private String adminUserName;
-	@Column(length = 50, nullable = false)
+	@Column( nullable = false)
 	private String adminPassword;
 
 }

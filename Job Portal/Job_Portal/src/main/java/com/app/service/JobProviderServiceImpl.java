@@ -3,8 +3,12 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +18,8 @@ import com.app.dto.JPUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobProvider;
 import com.app.repository.JobProviderRepo;
+import com.app.util.JwtUtil;
+import com.app.util.SaveCookie;
 
 @Service
 @Transactional
@@ -28,9 +34,17 @@ public class JobProviderServiceImpl implements JobProviderService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
 	@Override
 	public String registerJP(JPRegisterdto dto) {
+		BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
 		JobProvider jp=mapper.map(dto, JobProvider.class);
+		String encryptedPassword=bcrypt.encode(jp.getPassword());
+		System.out.println(encryptedPassword);
+		jp.setPassword(encryptedPassword);
+		System.out.println(jp.getPassword());
 		try
 		{
 			jpRepo.save(jp);
@@ -59,9 +73,17 @@ public class JobProviderServiceImpl implements JobProviderService {
 	}
 
 	@Override
-	public JobProvider signIn(Signindto dto) {
+	public JobProvider signIn(Signindto dto,HttpServletResponse response,HttpSession session) {
 		try {
+		
 		JobProvider jp=jpRepo.findByUserNameAndPassword(dto.getUserName(), dto.getPassword()).orElseThrow(()->new ResourceNotFoundException("invalid credentials"));
+		BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+		if(bcrypt.matches(dto.getPassword(), jp.getPassword()))
+		{
+			final String jwt=jwtUtil.generateToken(jp.getUserName());
+			session.setAttribute("jp", jp);
+			SaveCookie.sendToken(jwt, response);
+		}
 		return jp;
 		}catch (Exception e) {
 			return null;

@@ -8,7 +8,8 @@ function Footer() {
         <div className="row">
           <div className="col-lg-6">
             <h3>About Us</h3>
-            <p>Your company's description and mission can go here.</p>
+            <p>Whether you're embarking on a new career journey or expanding your team,Your Job Portal  is your partner in success. Join us to unlock a world of opportunities, connections, and growth.
+              At Job Portal , we're more than just a platform – we're your stepping stone to a brighter future.</p>
           </div>
           <div className="col-lg-3">
             <h3>Quick Links</h3>

@@ -80,4 +80,10 @@ public class JobServiceImpl implements JobService {
 		return listJob;
 	}
 
+	@Override
+	public List<Job> listJobs() {
+		
+		return jobRepo.findAll();
+	}
+
 }

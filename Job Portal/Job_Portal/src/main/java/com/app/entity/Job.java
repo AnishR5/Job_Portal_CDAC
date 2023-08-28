@@ -81,5 +81,10 @@ public class Job {
 		applicationList.put(appl.getApplicationId(), appl);
 	}
 	
+	
+    public List<Application> getApplications() {
+        return new ArrayList<>(applicationList.values());
+    }
+	
 
 }
