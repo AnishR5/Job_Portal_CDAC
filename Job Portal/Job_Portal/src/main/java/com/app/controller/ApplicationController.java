@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.entity.Application;
+import com.app.entity.Job;
 import com.app.service.ApplicationService;
 
 @RestController
@@ -51,5 +52,11 @@ public class ApplicationController {
 	public List<Application> getAllApplicationsForAjob(@PathVariable Long jobId)
 	{
 		return applService.listApplicationsByJob(jobId);
+	}
+	
+	@GetMapping("/jobs/jobseeker/{userName}")
+	public List<Application> getAllJobsByJs(@PathVariable String userName)
+	{
+		return applService.listJobsByJsId(userName);
 	}
 }

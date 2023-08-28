@@ -94,4 +94,6 @@ public class JobServiceImpl implements JobService {
 		return jobRepo.findByAssignedJpId(jp);
 	}
 
+	
+
 }

@@ -12,5 +12,7 @@ import com.app.entity.JobProvider;
 public interface JobRepo extends JpaRepository<Job, Long>{
 	
 	List<Job> findByAssignedJpId(JobProvider assignedJpId);	
+	
+	
 
 }
