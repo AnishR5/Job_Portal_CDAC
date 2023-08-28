@@ -2,12 +2,15 @@ package com.app.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +20,9 @@ import com.app.dto.InsertJobseekerDto;
 import com.app.dto.JSUpdateDto;
 import com.app.dto.Signindto;
 import com.app.entity.JobSeeker;
+import com.app.entity.OTP;
 import com.app.repository.JobSeekerRepo;
+import com.app.repository.OtpRepo;
 import com.app.util.JwtUtil;
 import com.app.util.SaveCookie;
 
@@ -37,6 +42,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 	
 	@Autowired
 	private JwtUtil jwtUtil;
+	
+	@Autowired
+	private JavaMailSender sender;
+	@Autowired
+	private OtpRepo otpRepo;
 
 //	@Override
 //	public String insertJobSeeker(InsertJobseekerDto dto,MultipartFile resume,MultipartHttpServletRequest request) {
@@ -165,5 +175,50 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 			return "Id Does Not Exist";
 		}
 
+	}
+
+	@Override
+	public String sendOtp(String userName) {
+		JobSeeker js=jsRepo.findByUserName(userName).get();
+		Random random=new Random();
+		Integer otp=random.nextInt(99999);
+		OTP persistentOtp=new OTP(js.getEmail(), otp);
+		otpRepo.save(persistentOtp);
+		SimpleMailMessage mgs=new SimpleMailMessage();
+		mgs.setTo(js.getEmail());
+		mgs.setSubject("Otp for password reset");
+		mgs.setText("Otp for password reset is "+otp);
+		sender.send(mgs);
+		return "otp sent";
+	}
+
+	@Override
+	public boolean verifyOtp(String userName, Integer otp) {
+	    Optional<JobSeeker> jobSeekerOptional = jsRepo.findByUserName(userName);
+	    if (jobSeekerOptional.isPresent()) {
+	        JobSeeker js = jobSeekerOptional.get();
+	        
+	        Optional<OTP> otpOptional = otpRepo.findByEmailAndOtp(js.getEmail(), otp);
+	        if (otpOptional.isPresent()) {
+	            OTP persistentOtp = otpOptional.get();
+	            System.out.println(persistentOtp);
+	            return persistentOtp.getOtp() == otp;
+	        }
+	    }
+	    return false;
+	}
+
+
+	@Override
+	public String resetPassword(String userName, String newPassword) {
+		JobSeeker js=jsRepo.findByUserName(userName).get();
+		 if (js != null) {
+	            // Update password logic
+	            js.setPassword(newPassword);
+	            jsRepo.save(js);
+	            return "Password reset successful.";
+	        } else {
+	            return "User not found.";
+	        }
 	}
 }

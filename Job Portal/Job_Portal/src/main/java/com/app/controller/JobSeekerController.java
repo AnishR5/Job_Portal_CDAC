@@ -110,4 +110,27 @@ public class JobSeekerController {
 		String result = jobSeekerService.updateJSByUserName(userName,updateDto);
 		return result;
 	}
+	
+	@GetMapping("/forgotpass/{userName}")
+	public String forgotPassword(@PathVariable String userName)
+	{
+		return jobSeekerService.sendOtp(userName);
+	}
+	
+	@GetMapping("verify/{userName}/{otp}")
+	public String verifyOtp(@PathVariable String userName, @PathVariable String otp) {
+		Integer intotp=Integer.parseInt(otp);
+        boolean isOtpValid = jobSeekerService.verifyOtp(userName, intotp);
+        if (isOtpValid) {
+            return "OTP verified successfully.";
+        } else {
+            return "Invalid OTP";
+        }
+    } 
+	
+	@PostMapping("/resetpass/{userName}")
+    public ResponseEntity<String> resetPassword(@PathVariable String userName, @RequestBody String newPassword) {
+        String result = jobSeekerService.resetPassword(userName, newPassword);
+        return ResponseEntity.ok(result);
+    }
 }

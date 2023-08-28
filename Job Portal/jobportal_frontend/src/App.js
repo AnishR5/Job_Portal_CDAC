@@ -19,6 +19,7 @@ import JPUpdate from './components/JPUpdate';
 import Footer from './components/Footer';
 import RegistrationAdmin from './components/RegistrationAdmin';
 import JobListJp from './components/JobListJp';
+import JsForgotPassword from './components/JsForgotPassword';
 function App() {
   return (
     <div className="App">
@@ -41,6 +42,7 @@ function App() {
         <Route path='/admin/home' element={<AdminHome></AdminHome>}></Route>
         <Route path='/logout' element={<Logout/>}></Route>
         <Route path='/admin/registration' element={<RegistrationAdmin/>}></Route>
+        <Route path='/jobseeker/forgotpassword' element={<JsForgotPassword/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
       <Footer/>
