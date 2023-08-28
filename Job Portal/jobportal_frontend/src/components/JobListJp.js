@@ -80,14 +80,16 @@ export default function JobListJp() {
           <thead>
             <tr>
               <th>Application ID</th>
-              {/* ...other application headers... */}
+              <th>JobId</th>
+              <th>Job Title</th>
             </tr>
           </thead>
           <tbody>
             {selectedJobApplications.map(application => (
               <tr key={application.applicationId}>
                 <td>{application.applicationId}</td>
-                {/* ...other application data cells... */}
+                <td>{application.assignedJobId.jobId}</td>
+                <td>{application.assignedJobId.jobTitle}</td>
               </tr>
             ))}
           </tbody>

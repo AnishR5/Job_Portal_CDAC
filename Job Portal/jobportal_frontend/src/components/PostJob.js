@@ -58,7 +58,7 @@ export default function PostJob() {
           const response = await axios.post("http://localhost:7070/job/insertjob", formData);
           console.log('Registration response:', response.data);
           
-          navigate('/job/jobs');
+          navigate('/jobprovider/jobs');
         } catch (error) {
           console.error('Registration error:', error);
           // Handle error
