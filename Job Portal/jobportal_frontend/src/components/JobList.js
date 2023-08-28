@@ -3,16 +3,18 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import JSNavBar from './JSNavBar';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function JobList() {
+  
   const [jobs, setJobs] = useState([]);
   const [buttonClicked,setButtonClicked] =useState(false);
   const currentDate = new Date();
 
   let userName = localStorage.getItem('userName');
   const userLoggedIn = Boolean(userName);
-  const url = `http://localhost:7070/job/jobs/${userName}`;
+  const url = `http://localhost:7070/job/jobs/jobseeker/${userName}`;
 
   useEffect(() => {
     // Fetch the list of jobs from the API
@@ -25,6 +27,16 @@ export default function JobList() {
         // Handle error
       });
   }, []);
+
+  const updateJobStatus = (jobId) => {
+    const updatedJobs = jobs.map(job => {
+      if (job.jobId === jobId) {
+        return { ...job, isApplied: true };
+      }
+      return job;
+    });
+    setJobs(updatedJobs);
+  };
 
   const handleJobApplication = async (jobId) => {
     if (jobId) {
@@ -43,6 +55,8 @@ export default function JobList() {
         } else {
           alert("Application failed");
         }
+        updateJobStatus(jobId);
+        
         // Handle the response or show a success message
       } catch (error) {
         console.error("Job application error:", error);

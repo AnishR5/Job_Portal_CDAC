@@ -17,6 +17,7 @@ import com.app.entity.JobSeeker;
 import com.app.entity.Location;
 import com.app.repository.ApplicationRepo;
 import com.app.repository.JobCategoryRepo;
+import com.app.repository.JobProviderRepo;
 import com.app.repository.JobRepo;
 import com.app.repository.JobSeekerRepo;
 import com.app.repository.LocationRepo;
@@ -27,8 +28,8 @@ public class JobServiceImpl implements JobService {
 
 	@Autowired
 	private JobRepo jobRepo;
-//	@Autowired
-//	private JobProviderRepo jobProviderRepo;
+	@Autowired
+	private JobProviderRepo jobProviderRepo;
 	@Autowired
 	private LocationRepo locationRepo;
 	@Autowired
@@ -84,6 +85,13 @@ public class JobServiceImpl implements JobService {
 	public List<Job> listJobs() {
 		
 		return jobRepo.findAll();
+	}
+
+	@Override
+	public List<Job> listJobsByJpId(String UserName) {
+		
+			JobProvider jp=jobProviderRepo.findByUserName(UserName).get();
+		return jobRepo.findByAssignedJpId(jp);
 	}
 
 }

@@ -2,11 +2,11 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 
 export default function JSNavBar() {
-    const navigate =useNavigate()
+  const userName = localStorage.getItem('userName');
     
   return (
     <div>
@@ -17,10 +17,12 @@ export default function JSNavBar() {
         <Nav.Link href="/jobseeker/home">Home</Nav.Link>
         <Nav.Link href="/job/jobs">All Jobs</Nav.Link>
         <Nav.Link href='/jobseeker/update'>Update</Nav.Link>
+        <Nav.Link href='/logout'>SignOut</Nav.Link>
         </Nav>
         <Nav>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href='/logout'>SignOut</Nav.Link>
+          
+          <Nav.Link disabled className="me-3"> Signed in as: {userName}</Nav.Link>
         </Navbar.Collapse>
         </Nav>
       </Container>

@@ -11,6 +11,7 @@ export default function PostJob() {
     const [jobProvider,setJobProvider]=useState([])
     const [category, setcategory] = useState([]);
     const [location, setlocation] = useState([]);
+    const [showCategoryForm, setShowCategoryForm] = useState(false);
     const [formData, setFormData] = useState(
         {
             assignedJpId: `${jobProvider.jpId}`,
@@ -69,6 +70,10 @@ export default function PostJob() {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
       };
 
+      const toggleCategoryForm = () => {
+        setShowCategoryForm(!showCategoryForm);
+      };
+
   return (
     <div> 
       <JPNavBar></JPNavBar>
@@ -109,6 +114,28 @@ export default function PostJob() {
                           ))}                       
                          
                       </Form.Select>
+                      {/* <div className="mb-3">
+                        <Button variant="primary" onClick={toggleCategoryForm}>
+                          Add Job Category
+                        </Button></div>
+                        {showCategoryForm && (
+                              <Form>
+                                <Form.Group className="mb-3" controlId="Name">
+                                      <Form.Label className="text-center">
+                                        Category Name
+                                      </Form.Label>
+                                      <Form.Control  type="text"                          
+                                          name="jcName"
+                                          value={formData.assignedJpId}
+                                          onChange={handleChange} />
+                                    </Form.Group>
+                                <div className="d-grid">
+                                  <Button variant="primary" type="submit">
+                                    Add Category
+                                  </Button>
+                                </div>
+                              </Form>
+                            )} */}
 
                       <Form.Group
                       className="mb-3"

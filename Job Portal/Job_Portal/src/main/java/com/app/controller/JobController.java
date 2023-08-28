@@ -33,15 +33,22 @@ public class JobController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jobResult);
 	}
 	
-	@GetMapping("/jobs/{userName}")
+	//username of js
+	@GetMapping("/jobs/jobseeker/{userName}")
 	public List<Job> getAllJobs(@PathVariable String userName)
 	{
 		return jobService.listAllJobs(userName);
 	}
 	
-	@GetMapping("/jobs")
+	@GetMapping("/jobs")	
 	public List<Job> getJobs()
 	{
 		return jobService.listJobs();
+	}
+	
+	@GetMapping("/jobs/jobprovider/{userName}")
+	public List<Job> getAllJobsByJp(@PathVariable String userName)
+	{
+		return jobService.listJobsByJpId(userName);
 	}
 }

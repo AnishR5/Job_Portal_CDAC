@@ -12,6 +12,8 @@ public interface JobService {
 	List<Job> listAllJobs(String userName);
 	
 	List<Job> listJobs();
+	
+	List<Job> listJobsByJpId(String UserName);
 
 	
 }

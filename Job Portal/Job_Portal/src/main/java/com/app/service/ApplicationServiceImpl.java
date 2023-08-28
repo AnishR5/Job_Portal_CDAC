@@ -1,7 +1,8 @@
 package com.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -50,15 +51,17 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public String insertApplication(String userName, long jobId) {
 		try {
-			JSONObject jsonObject= new JSONObject(userName);
-			userName = jsonObject.getString("userName");
+//			JSONObject jsonObject= new JSONObject(userName);
+//			userName = jsonObject.getString("userName");
+			System.out.println(userName);
 			JobSeeker jobSeeker = jobSeekerRepo.findByUserName(userName).get();
 			Application appl=new Application();
-			System.out.println(appl);
+			//System.out.println(appl);
 			Job job=jobRepo.findById(jobId).get();		
 			appl.setAssignedJobId(job);
 			appl.setAssignedJsId(jobSeeker);
 			appl.setStatus(JobStatus.APPLIED);
+			applRepo.save(appl);
 			//jobSeeker.addApplication(appl);
 			SimpleMailMessage mgs=new SimpleMailMessage();
 			mgs.setTo(jobSeeker.getEmail());
@@ -67,11 +70,19 @@ public class ApplicationServiceImpl implements ApplicationService {
 	                + "Your application for the job " + job.getJobTitle() + " has been successfully submitted."
 	                + "\n\nBest regards,\nThe Application Team");
 			sender.send(mgs);
-			applRepo.save(appl);
+			
 			
 		}catch (Exception e) {
-			return "Failed";
+			e.printStackTrace();
+			return "Failed"+e.getMessage();
 		}
 		return "Success";
+	}
+
+	@Override
+	public List<Application> listApplicationsByJob(Long jobId) {
+		Job job=jobRepo.findById(jobId).get();
+				
+		return applRepo.findByAssignedJobId(job);
 	}
 }

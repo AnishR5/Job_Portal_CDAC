@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 export default function AdminNavBar() {
+  const userName = localStorage.getItem('userName');
   return (
     <div><div>
     <Navbar bg="dark" data-bs-theme="dark">
@@ -12,9 +13,10 @@ export default function AdminNavBar() {
         <Nav className="me-auto">
           <Nav.Link href="/admin/home">Home</Nav.Link>
           <Nav.Link href="/admin/registration">Register Another Admin</Nav.Link>
+          <Nav.Link href="/logout">SignOut</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href="/logout">SignOut</Nav.Link>
+        <Nav.Link disabled className="me-3"> Signed in as: {userName}</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

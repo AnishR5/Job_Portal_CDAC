@@ -18,6 +18,7 @@ import JSUpdate from './components/JSUpdate';
 import JPUpdate from './components/JPUpdate';
 import Footer from './components/Footer';
 import RegistrationAdmin from './components/RegistrationAdmin';
+import JobListJp from './components/JobListJp';
 function App() {
   return (
     <div className="App">
@@ -35,6 +36,7 @@ function App() {
         <Route path='/jobprovider/home' element={<JPHome></JPHome>}></Route>
         <Route path='/jobprovider/update' element={<JPUpdate></JPUpdate>}></Route>
         <Route path='/jobprovider/signin'element={<LoginJP/>}></Route>
+        <Route path='/jobprovider/jobs' element={<JobListJp/>}></Route>
         <Route path='/admin/signin' element={<LoginAdmin></LoginAdmin>}></Route>
         <Route path='/admin/home' element={<AdminHome></AdminHome>}></Route>
         <Route path='/logout' element={<Logout/>}></Route>

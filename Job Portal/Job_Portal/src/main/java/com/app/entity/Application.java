@@ -1,6 +1,5 @@
 package com.app.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -12,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,7 +43,7 @@ public class Application {
 	@JoinColumn(name = "jobId" , nullable = false)
 	private Job assignedJobId;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "jsId" , nullable = false)
 	private JobSeeker assignedJsId;
 	
