@@ -88,6 +88,16 @@ public class JobProviderServiceImpl implements JobProviderService {
 		
 	}
 
+	@Override
+	public String deleteJP(Long jpId) {
+		String msg = "Job Provider Id does not exist";
+		if(jpRepo.existsById(jpId)) {
+			jpRepo.deleteById(jpId);
+			msg="Job Provider Deleted";
+		}
+		return msg;
+	}
+
 	
 	
 

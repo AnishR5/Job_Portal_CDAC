@@ -49,6 +49,16 @@ export default function AdminHome() {
       });
   };
 
+  const handleDeleteJobProvider = async (jpId) => {
+    try {
+      await axios.delete(`http://localhost:7070/jobprovider/delete/${jpId}`);
+      // Perform any necessary updates to your state or UI after successful deletion
+      console.log(`Job Provider with ID ${jpId} deleted`);
+    } catch (error) {
+      console.error('Error deleting job provider:', error);
+    }
+  };
+
   return (
     <div>
       <AdminNavBar></AdminNavBar>
@@ -72,7 +82,9 @@ export default function AdminHome() {
               <td>{provider.jpName}</td>
               <td>{provider.userName}</td>
               <td>{provider.webSite}</td>
-              
+              <td>
+                <button onClick={() => handleDeleteJobProvider(provider.jpId)}>Delete</button>
+              </td>
               
             </tr>
           ))}

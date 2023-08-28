@@ -20,5 +20,7 @@ public interface JobProviderService {
 	String updateJPDetails(String userName, JPUpdateDto jpUpdateDto);
 
 	JobProvider getJPbyUserName(String userName);
+	
+	String deleteJP(Long jpId);
 
 }
