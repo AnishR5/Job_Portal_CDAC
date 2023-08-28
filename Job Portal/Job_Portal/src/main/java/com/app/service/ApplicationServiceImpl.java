@@ -88,7 +88,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	@Override
 	public List<Application> listJobsByJsId(String userName) {
-		JobSeeker jsId = jobSeekerRepo.findByUserName(userName).get();
-		return applRepo.findByAssignedJsId(jsId);
+		JobSeeker js = jobSeekerRepo.findByUserName(userName).get();
+		return applRepo.findByAssignedJsId(js);
 	}
 }

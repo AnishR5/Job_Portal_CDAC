@@ -14,4 +14,6 @@ public interface ApplicationRepo extends JpaRepository<Application, Long> {
 	List<Application> findByAssignedJobId(Job jobId);
 	
 	List<Application> findByAssignedJsId(JobSeeker jsId);
+	
+	
 }
