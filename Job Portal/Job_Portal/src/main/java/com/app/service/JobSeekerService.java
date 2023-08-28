@@ -30,4 +30,10 @@ public interface JobSeekerService {
 	String updateJSByUserName(String userName, JSUpdateDto updateDto);
 
 	JobSeeker getJobSeekerByUserName(String userName);
+	
+	String sendOtp(String userName);
+	
+	boolean verifyOtp(String userName,Integer intotp);
+	
+	String resetPassword(String userName,String newPassword);
 }

@@ -81,7 +81,10 @@ export default function Login() {
                   </Form>
                   <div>
                       New User?<NavLink to={`/jobseeker/registration`}>SignUp</NavLink>
+                      <br />
+                      <NavLink to={`/jobseeker/forgotpassword`}>Forgot Password?</NavLink>
                   </div>
+                 
                 </div>
               </div>
             </Card.Body>
