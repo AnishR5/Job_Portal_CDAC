@@ -18,9 +18,11 @@ export default function JPNavBar() {
             <Nav.Link href='/jobprovider/update' className="me-3">Update Profile</Nav.Link>
             <Nav.Link href="/logout">Sign Out</Nav.Link>
           </Nav>
+          <Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link disabled className="me-3"> Signed in as: {userName}</Nav.Link>
           </Navbar.Collapse>
+          </Nav>
         </Container>
       </Navbar>
     </div>
