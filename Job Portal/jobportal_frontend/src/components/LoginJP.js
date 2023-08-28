@@ -77,6 +77,8 @@ export default function LoginJP() {
                   </Form>
                   <div>
                       New User?<NavLink to={`/jobprovider/registration`}>SignUp</NavLink>
+                      <br />
+                      <NavLink to={`/jobprovider/forgotpassword`}>Forgot Password?</NavLink>
                   </div>
                 </div>
               </div>

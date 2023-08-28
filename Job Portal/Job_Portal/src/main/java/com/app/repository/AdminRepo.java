@@ -11,5 +11,7 @@ import com.app.entity.Admin;
 public interface AdminRepo extends JpaRepository<Admin, Long> {
 	
 	Optional<Admin> findByAdminUserNameAndAdminPassword(String userName,String Password);
+	
+	Optional<Admin> findByAdminUserName(String userName);
 
 }

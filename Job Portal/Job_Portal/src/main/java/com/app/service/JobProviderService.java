@@ -26,4 +26,10 @@ public interface JobProviderService {
 	
 	String deleteJP(Long jpId);
 
+	String sendOtp(String userName);
+
+	boolean verifyOtp(String userName, Integer intotp);
+
+	String resetPassword(String userName, String newPassword);
+
 }

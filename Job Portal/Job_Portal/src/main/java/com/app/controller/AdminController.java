@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +43,28 @@ public class AdminController {
 	{
 		return ResponseEntity.ok(adminService.signIn(dto,response,session));
 	}
+	
+//	@GetMapping("/forgotpass/{userName}")
+//	public String forgotPassword(@PathVariable String userName)
+//	{
+//		return adminService.sendOtp(userName);
+//	}
+//	
+//	@GetMapping("verify/{userName}/{otp}")
+//	public String verifyOtp(@PathVariable String userName, @PathVariable String otp) {
+//		Integer intotp=Integer.parseInt(otp);
+//        boolean isOtpValid = adminService.verifyOtp(userName, intotp);
+//        if (isOtpValid) {
+//            return "OTP verified successfully.";
+//        } else {
+//            return "Invalid OTP";
+//        }
+//    } 
+//	
+//	@PostMapping("/resetpass/{userName}")
+//    public ResponseEntity<String> resetPassword(@PathVariable String userName, @RequestBody String newPassword) {
+//        String result = adminService.resetPassword(userName, newPassword);
+//        return ResponseEntity.ok(result);
+//    }
 
 }

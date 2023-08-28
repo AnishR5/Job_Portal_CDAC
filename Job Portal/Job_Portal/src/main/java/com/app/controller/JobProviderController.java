@@ -78,5 +78,28 @@ public class JobProviderController {
 	{
 		return jpService.deleteJP(jpId);
 	}
+	
+	@GetMapping("/forgotpass/{userName}")
+	public String forgotPassword(@PathVariable String userName)
+	{
+		return jpService.sendOtp(userName);
+	}
+	
+	@GetMapping("verify/{userName}/{otp}")
+	public String verifyOtp(@PathVariable String userName, @PathVariable String otp) {
+		Integer intotp=Integer.parseInt(otp);
+        boolean isOtpValid = jpService.verifyOtp(userName, intotp);
+        if (isOtpValid) {
+            return "OTP verified successfully.";
+        } else {
+            return "Invalid OTP";
+        }
+    } 
+	
+	@PostMapping("/resetpass/{userName}")
+    public ResponseEntity<String> resetPassword(@PathVariable String userName, @RequestBody String newPassword) {
+        String result = jpService.resetPassword(userName, newPassword);
+        return ResponseEntity.ok(result);
+    }
 
 }

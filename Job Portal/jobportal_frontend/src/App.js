@@ -20,6 +20,7 @@ import Footer from './components/Footer';
 import RegistrationAdmin from './components/RegistrationAdmin';
 import JobListJp from './components/JobListJp';
 import JsForgotPassword from './components/JsForgotPassword';
+import JpForgotPassword from './components/JpForgotPassword';
 function App() {
   return (
     <div className="App">
@@ -43,6 +44,7 @@ function App() {
         <Route path='/logout' element={<Logout/>}></Route>
         <Route path='/admin/registration' element={<RegistrationAdmin/>}></Route>
         <Route path='/jobseeker/forgotpassword' element={<JsForgotPassword/>}></Route>
+        <Route path='/jobprovider/forgotpassword' element={<JpForgotPassword/>}></Route>
        {/* <Route path='/jobseeker' element={<JobSeekerComponent/>}></Route> */}
       </Routes>
       <Footer/>

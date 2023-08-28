@@ -13,4 +13,10 @@ public interface AdminService {
 	
 	Admin signIn(Signindto dto,HttpServletResponse response,HttpSession session);
 
+//	String sendOtp(String userName);
+//
+//	boolean verifyOtp(String userName, Integer intotp);
+//
+//	String resetPassword(String userName, String newPassword);
+
 }
