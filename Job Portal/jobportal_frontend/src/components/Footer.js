@@ -23,6 +23,7 @@ function Footer() {
           <div className="col-lg-3">
             <h3>Contact Us</h3>
             <p>Email: anishrachcha@gmail.com</p>
+            <p>Email: komalrochlani1994@gmail.com</p>
             <p>Phone: +91 9423749050</p>
           </div>
         </div>
