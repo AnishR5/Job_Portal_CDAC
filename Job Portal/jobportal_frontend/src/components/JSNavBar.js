@@ -16,7 +16,7 @@ export default function JSNavBar() {
         <Nav className="me-auto">
         <Nav.Link href="/jobseeker/home">Home</Nav.Link>
         <Nav.Link href="/job/jobs">All Jobs</Nav.Link>
-        <Nav.Link href="/jobseeker/applylist" >My Applications</Nav.Link>
+        <Nav.Link href='/jobseeker/myapplications'>Applications</Nav.Link>
         <Nav.Link href='/jobseeker/update'>Update</Nav.Link>
         <Nav.Link href='/logout'>SignOut</Nav.Link>
         </Nav>

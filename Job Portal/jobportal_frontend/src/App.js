@@ -22,6 +22,7 @@ import RegistrationAdmin from './components/RegistrationAdmin';
 import JobListJp from './components/JobListJp';
 import JsForgotPassword from './components/JsForgotPassword';
 import JpForgotPassword from './components/JpForgotPassword';
+import JsMyApplications from './components/JsMyApplications';
 function App() {
   return (
     <div className="App">
@@ -33,7 +34,7 @@ function App() {
         <Route path='/jobseeker/registration' element={<Registration/>}></Route>
         <Route path='/jobseeker/home' element={<JSHome></JSHome>}></Route>
         <Route path='/jobseeker/update' element={<JSUpdate />}></Route>
-        <Route path='/jobseeker/applylist' element={<AppliedListJS></AppliedListJS>}></Route>
+        <Route path='/jobseeker/myapplications' element={<JsMyApplications/>}></Route>
         <Route path='/job/jobs' element={<JobList/>}></Route>
         <Route path='/jobprovider/registration' element={<RegisterJobProvider/>}></Route>
         <Route path='/jobprovider/insertjob' element={<PostJob></PostJob>}></Route>
