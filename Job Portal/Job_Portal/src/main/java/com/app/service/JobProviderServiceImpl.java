@@ -168,7 +168,9 @@ public class JobProviderServiceImpl implements JobProviderService {
 		JobProvider jp=jpRepo.findByUserName(userName).get();
 		 if (jp != null) {
 	            // Update password logic
-			 jp.setPassword(newPassword);
+			 BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
+			 String encryptedPassword=bcrypt.encode(newPassword);
+			 jp.setPassword(encryptedPassword);
 			 jpRepo.save(jp);
 	            return "Password reset successful.";
 	        } else {

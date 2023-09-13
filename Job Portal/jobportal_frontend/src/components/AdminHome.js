@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import AdminNavBar from './AdminNavBar';
 
 export default function AdminHome() {
-    const [jobProviders, setJobProviders] = useState([]);
+  const [jobProviders, setJobProviders] = useState([]);
   const [jobSeekers, setJobSeekers] = useState([]);
   const [jobs, setJobs] = useState([]);
   let userName = localStorage.getItem('userName');

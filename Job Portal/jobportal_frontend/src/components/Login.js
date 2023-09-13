@@ -20,17 +20,13 @@ export default function Login() {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-
-       
-    
         try {
           const response = await axios.post("http://localhost:7070/jobseeker/signin", formData);
           console.log('Registration response:', response.data.jsId);
          // console.log(response);
          const  token  = response.data;
       localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('userName',formData.userName);
-     
+      localStorage.setItem('userName',formData.userName);     
       localStorage.setItem('token',token);
       setAuthToken(token);
           
